@@ -1,0 +1,29 @@
+/* ---------- EthioSync tool additions (Ethiopian calendar widgets) ---------- */
+.kb-grid{ display:flex; flex-wrap:wrap; gap:8px; }
+.kb-grid button{
+  min-width:44px; padding:10px 12px; border-radius:var(--radius-sm);
+  border:1px solid var(--border); background:var(--card-bg); color:var(--text);
+  font-size:1.15rem; cursor:pointer; transition:.15s ease;
+}
+.kb-grid button:hover{ border-color:var(--brand); color:var(--brand-ink); transform:translateY(-1px); }
+.kb-grid button:active{ transform:translateY(0); }
+html[data-theme="dark"] .kb-grid button:hover{ color:#c7c3ff; }
+
+.et-cal{ width:100%; border-collapse:collapse; margin-top:6px; }
+.et-cal th{ font-family:var(--font-display); font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; color:var(--text-dim); padding:8px 4px; border-bottom:1px solid var(--border); }
+.et-cal td{ text-align:center; padding:6px 4px; border-bottom:1px solid var(--border); vertical-align:top; }
+.et-cal td.other{ border:none; }
+.et-cal .day-btn{
+  width:40px; height:40px; border-radius:10px; border:1px solid transparent; background:transparent;
+  color:var(--text); font-weight:600; cursor:pointer; transition:.15s ease;
+}
+.et-cal .day-btn:hover{ background:rgba(91,91,246,.1); border-color:var(--brand); }
+.et-cal td.today .day-btn{ background:var(--grad-brand); color:#fff; box-shadow:var(--shadow-glow); }
+.et-cal .greg-sub{ display:block; font-size:.68rem; color:var(--text-dim); margin-top:2px; }
+.EthioSync-error{ color:var(--danger); font-weight:600; }
+.EthioSync-note{ font-size:.82rem; color:var(--text-dim); }
+.EthioSync-live{ font-variant-numeric:tabular-nums; }
+.result-box{ background:var(--paper-dim); border:1px solid var(--border); border-radius:var(--radius-md); padding:16px 18px; margin-top:16px; line-height:1.7; }
+html[data-theme="dark"] .result-box{ background:var(--ink-800); }
+.result-box:empty{ display:none; }
+

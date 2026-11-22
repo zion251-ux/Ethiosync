@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter — Live Exchange Rates | EthioSync</title>
+<meta name="description" content="Convert between 200+ world currencies using live exchange rates from the free Frankfurter API. No sign-up, no API key, real-time reference rates.">
+<meta name="keywords" content="currency converter, exchange rates, forex, live rates, currency calculator, frankfurter">
+<link rel="canonical" href="https://kronos.alc.onl/currency-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Currency Converter — Live Exchange Rates | EthioSync">
+<meta property="og:description" content="Convert between 200+ world currencies using live exchange rates. Free, no sign-up, real-time reference rates.">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/tool.css">
+<link rel="stylesheet" href="css/ethiosync-tools.css">
+<style>
+/* ---------- Currency converter specific styles ---------- */
+.conv-row{ display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; }
+.conv-row .field-group{ flex:1; min-width:160px; margin-bottom:0; }
+.swap-btn{
+  width:46px; height:46px; border-radius:50%; border:1.5px solid var(--border);
+  background:var(--bg-alt); color:var(--text-dim); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:.15s ease; flex-shrink:0; font-size:1rem;
+}
+.swap-btn:hover{ border-color:var(--brand); color:var(--brand-ink); transform:rotate(180deg); }
+html[data-theme="dark"] .swap-btn:hover{ color:#c7c3ff; }
+
+.conv-amount-wrap{ position:relative; }
+.conv-amount-wrap .cur-prefix{
+  position:absolute; left:14px; top:50%; transform:translateY(-50%);
+  font-family:var(--font-mono); font-size:.95rem; color:var(--text-dim); pointer-events:none; font-weight:600;
+}
+.conv-amount-wrap input{ padding-left:42px; }
+
+.conv-result-card{
+  background:linear-gradient(135deg, rgba(91,91,246,.06), rgba(18,217,164,.06));
+  border:1px solid var(--border); border-radius:var(--radius-lg);
+  padding:28px 26px; margin-top:20px; text-align:center;
+}
+html[data-theme="dark"] .conv-result-card{ background:linear-gradient(135deg, rgba(91,91,246,.10), rgba(18,217,164,.08)); }
+.conv-result-card .res-amount{
+  font-family:var(--font-display); font-size:clamp(1.8rem,5vw,2.6rem); font-weight:700;
+  background:var(--grad-brand); -webkit-background-clip:text; background-clip:text; color:transparent;
+  line-height:1.2;
+}
+.conv-result-card .res-sub{ font-size:.92rem; color:var(--text-dim); margin-top:8px; }
+.conv-result-card .res-rate{
+  display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+  font-family:var(--font-mono); font-size:.82rem; color:var(--text-dim);
+  background:var(--card-bg); padding:6px 14px; border-radius:var(--radius-pill); border:1px solid var(--border);
+}
+.conv-result-card .res-date{
+  margin-top:12px; font-size:.78rem; color:var(--text-dim);
+  display:inline-flex; align-items:center; gap:6px;
+}
+
+.conv-status{
+  display:flex; align-items:center; gap:8px; font-size:.82rem; color:var(--text-dim);
+  margin-bottom:14px;
+}
+.conv-status .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); }
+.conv-status .dot.loading{ background:var(--warn); animation:pulse 1s infinite; }
+.conv-status .dot.error{ background:var(--danger); }
+@keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+
+.quick-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+.quick-card{
+  background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-md);
+  padding:14px 16px; transition:.15s ease; cursor:pointer;
+}
+.quick-card:hover{ border-color:var(--brand); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
+.quick-card .qc-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+.quick-card .qc-pair{ font-weight:700; font-size:.9rem; font-family:var(--font-mono); }
+.quick-card .qc-rate{ font-family:var(--font-display); font-size:1.15rem; font-weight:700; color:var(--brand-ink); }
+html[data-theme="dark"] .quick-card .qc-rate{ color:#c7c3ff; }
+.quick-card .qc-inv{ font-size:.76rem; color:var(--text-dim); font-family:var(--font-mono); }
+
+.cur-flag{ font-size:1.1rem; line-height:1; }
+select.form-control option{ padding:8px; }
+</style>
+
+<meta name="ethiosync-title-en" content="Currency Converter — Live Exchange Rates | EthioSync">
+<meta name="ethiosync-description-en" content="Convert between 200+ world currencies using live exchange rates from the free Frankfurter API. No sign-up, no API key, real-time reference rates.">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="author" content="EthioSync">
+<meta name="theme-color" content="#0b1020">
+<meta property="og:site_name" content="EthioSync">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="am_ET">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Currency Converter — Live Exchange Rates | EthioSync">
+<meta property="og:description" content="Convert between 200+ world currencies using live exchange rates from the free Frankfurter API. No sign-up, no API key, real-time reference rates.">
+<meta property="og:url" content="https://kronos.alc.onl/currency-converter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Currency Converter — Live Exchange Rates | EthioSync">
+<meta name="twitter:description" content="Convert between 200+ world currencies using live exchange rates from the free Frankfurter API. No sign-up, no API key, real-time reference rates.">
+<link rel="alternate" hreflang="en" href="https://kronos.alc.onl/currency-converter.html">
+<link rel="alternate" hreflang="am" href="https://kronos.alc.onl/currency-converter.html?lang=am">
+<link rel="alternate" hreflang="x-default" href="https://kronos.alc.onl/currency-converter.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kronos.alc.onl/#organization","name":"EthioSync","url":"https://kronos.alc.onl/","logo":{"@type":"ImageObject","url":"https://kronos.alc.onl/images/favicon.svg"}},{"@type":"WebPage","@id":"https://kronos.alc.onl/currency-converter.html#webpage","url":"https://kronos.alc.onl/currency-converter.html","name":"Currency Converter — Live Exchange Rates | EthioSync","description":"Convert between 200+ world currencies using live exchange rates from the free Frankfurter API. No sign-up, no API key, real-time reference rates.","inLanguage":["en","am"],"isPartOf":{"@type":"WebSite","name":"EthioSync","url":"https://kronos.alc.onl/"},"publisher":{"@id":"https://kronos.alc.onl/#organization"}},{"@type":"WebApplication","name":"Currency Converter","url":"https://kronos.alc.onl/currency-converter.html","description":"Convert between 200+ world currencies using live exchange rates from the free Frankfurter API. No sign-up, no API key, real-time reference rates.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["en","am"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://kronos.alc.onl/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kronos.alc.onl/"},{"@type":"ListItem","position":2,"name":"Finance & Work","item":"https://kronos.alc.onl/"},{"@type":"ListItem","position":3,"name":"Currency Converter"}]}]}</script>
+</head>
+<body>
+<div id="language-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-hourglass-half"></i></span>EthioSync</a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <div class="nav-item">
+        <a href="index.html#all-tools" class="nav-drop-btn">All Tools <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="nav-dropdown">
+          <a href="index.html#cat-calendar"><i class="fa-solid fa-calendar-days"></i> Calendar Tools</a>
+          <a href="index.html#cat-language"><i class="fa-solid fa-language"></i> Amharic &amp; Language</a>
+          <a href="index.html#cat-finance"><i class="fa-solid fa-calculator"></i> Finance &amp; Work</a>
+          <a href="index.html#cat-reference"><i class="fa-solid fa-book-open"></i> Reference</a>
+        </div>
+      </div>
+            <a href="resources.html">Resources</a>
+      <a href="blog.html">Blog</a>
+      <a href="games.html">Games</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="header-actions">
+      <label class="language-control" aria-label="Website language"><span class="sr-only">Language</span><select class="language-select notranslate" aria-label="Select language"><option value="en">EN</option><option value="am">አማርኛ</option></select></label>
+      <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+      <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav">
+  <a href="index.html">Home</a>
+  <div class="m-nav-item">
+    <a href="index.html#all-tools" class="nav-drop-btn">All Tools <i class="fa-solid fa-chevron-down"></i></a>
+    <div class="m-sub">
+      <a href="index.html#cat-calendar"><i class="fa-solid fa-calendar-days"></i> Calendar Tools</a>
+      <a href="index.html#cat-language"><i class="fa-solid fa-language"></i> Amharic &amp; Language</a>
+      <a href="index.html#cat-finance"><i class="fa-solid fa-calculator"></i> Finance &amp; Work</a>
+      <a href="index.html#cat-reference"><i class="fa-solid fa-book-open"></i> Reference</a>
+    </div>
+  </div>
+  <a href="resources.html">Resources</a>
+  <a href="blog.html">Blog</a>
+  <a href="games.html">Games</a>
+  <a href="about.html">About EthioSync</a>
+</div>
+
+<div class="tool-header">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> <i class="fa-solid fa-chevron-right" style="font-size:.6rem;"></i> <a href="index.html#cat-finance">Finance &amp; Work</a> <i class="fa-solid fa-chevron-right" style="font-size:.6rem;"></i> Currency Converter</p>
+    <div class="tool-header-top">
+      <div class="tool-title-block">
+        <span class="tool-title-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
+        <div>
+          <h1>Currency Converter</h1>
+          <p>Live exchange rates for 200+ currencies — powered by the free Frankfurter API, no key required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="container tool-layout">
+  <div class="tool-main">
+
+    <div class="panel">
+      <div class="conv-status" id="conv-status">
+        <span class="dot loading"></span>
+        <span id="conv-status-text">Loading currencies&hellip;</span>
+      </div>
+
+      <div class="row-2" style="margin-bottom:16px;">
+        <div class="field-group">
+          <label for="cc-amount">Amount</label>
+          <div class="conv-amount-wrap">
+            <input type="number" id="cc-amount" class="form-control" value="100" min="0" step="any" placeholder="Enter amount">
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="cc-from">From</label>
+          <select id="cc-from" class="form-control" disabled><option>Loading&hellip;</option></select>
+        </div>
+      </div>
+
+      <div class="conv-row" style="margin-bottom:16px;">
+        <div class="field-group" style="flex:1;">
+          <label for="cc-to">To</label>
+          <select id="cc-to" class="form-control" disabled><option>Loading&hellip;</option></select>
+        </div>
+        <button class="swap-btn" id="cc-swap" title="Swap currencies" aria-label="Swap from and to currencies"><i class="fa-solid fa-right-left"></i></button>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="cc-convert" disabled><i class="fa-solid fa-arrows-rotate"></i> Convert</button>
+
+      <div class="conv-result-card" id="cc-result" style="display:none;">
+        <div class="res-amount" id="cc-res-amount">&mdash;</div>
+        <div class="res-sub" id="cc-res-sub"></div>
+        <div class="res-rate" id="cc-res-rate"></div>
+        <div class="res-date" id="cc-res-date"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 style="margin-bottom:14px;"><i class="fa-solid fa-bolt" style="color:var(--brand);"></i> Quick rates</h2>
+      <p class="EthioSync-note" style="margin-bottom:14px;">Tap any card to load it into the converter above. Rates update live from the Frankfurter API.</p>
+      <div class="quick-grid" id="cc-quick"></div>
+    </div>
+
+    <div class="panel info-accordion">
+      <h2 style="margin-bottom:0;">About this tool</h2>
+      <details open>
+        <summary>Where do the exchange rates come from?</summary>
+        <p>Rates are fetched live from the <a href="https://frankfurter.dev" target="_blank" rel="noopener" style="color:var(--brand-ink);font-weight:600;">Frankfurter API</a> — a free, open-source exchange rate service that aggregates reference rates from over 110 central banks and official sources. No API key is required and there are no usage quotas.</p>
+      </details>
+      <details>
+        <summary>Are these live trading rates?</summary>
+        <p>No. These are reference rates published once or a few times per day by central banks. They are ideal for accounting, billing, reporting and general conversions, but not for live trading or currencies with high intraday volatility.</p>
+      </details>
+      <details>
+        <summary>How many currencies are supported?</summary>
+        <p>The Frankfurter API covers 219 currencies and 39 other assets (including precious metals like gold and silver, plus major cryptocurrencies). Legacy currencies with historical data are also available.</p>
+      </details>
+      <details>
+        <summary>Is my data sent anywhere?</summary>
+        <p>Only the currency codes and amount you enter are sent to the Frankfurter API to fetch the rate. No personal data is collected, logged, or stored — the API does not record IP addresses or request URLs.</p>
+      </details>
+    </div>
+
+  </div>
+
+  <aside class="tool-sidebar">
+    <div class="panel">
+      <h3>Related tools</h3>
+      <ul class="related-list">
+        <li><a href="ethiopia-income-tax-calculator.html"><i class="fa-solid fa-file-invoice-dollar"></i> Income Tax Calculator</a></li>
+        <li><a href="ethiopia-overtime-calculator.html"><i class="fa-solid fa-business-time"></i> Overtime Pay Calculator</a></li>
+        <li><a href="ethiopia-annual-leave-calculator.html"><i class="fa-solid fa-umbrella-beach"></i> Annual Leave Calculator</a></li>
+        <li><a href="time-in-ethiopia.html"><i class="fa-solid fa-clock"></i> Time in Ethiopia</a></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Popular pairs</h3>
+      <ul class="related-list" id="cc-popular">
+        <li><a href="#" data-pair="eur/usd"><i class="fa-solid fa-euro-sign"></i> EUR &rarr; USD</a></li>
+        <li><a href="#" data-pair="usd/etb"><i class="fa-solid fa-dollar-sign"></i> USD &rarr; ETB</a></li>
+        <li><a href="#" data-pair="gbp/usd"><i class="fa-solid fa-sterling-sign"></i> GBP &rarr; USD</a></li>
+        <li><a href="#" data-pair="usd/cny"><i class="fa-solid fa-yen-sign"></i> USD &rarr; CNY</a></li>
+        <li><a href="#" data-pair="usd/inr"><i class="fa-solid fa-indian-rupee-sign"></i> USD &rarr; INR</a></li>
+      </ul>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="color:#fff;margin-bottom:14px;">
+          <span class="brand-mark"><i class="fa-solid fa-hourglass-half"></i></span>
+          EthioSync
+        </div>
+        <p>Practical Ethiopian calendar tools, Amharic resources, calculators and clear cultural guides for everyday use.</p>
+        <div class="footer-badges">
+          <span>Calendar</span><span>Amharic</span><span>Finance</span><span>Reference</span>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#all-tools">All Tools</a></li>
+          <li><a href="ethiopian-date-converter.html">Date Converter</a></li>
+          <li><a href="ethiopian-age-calculator.html">Age Calculator</a></li>
+          <li><a href="ethiopia-income-tax-calculator.html">Income Tax Calculator</a></li>
+          <li><a href="amharic-keyboard.html">Amharic Keyboard</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="games.html">Games</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Top Tools</h4>
+        <ul>
+          <li><a href="ethiopian-calendar.html">Ethiopian Calendar</a></li>
+          <li><a href="ethiopian-holidays.html">Holidays &amp; Fasting</a></li>
+          <li><a href="ethiopia-overtime-calculator.html">Overtime Calculator</a></li>
+          <li><a href="currency-converter.html">Currency Converter</a></li>
+          <li><a href="time-in-ethiopia.html">Time in Ethiopia</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-envelope"></i> EthioSync@alchosting.xyz</li>
+          <li><i class="fa-solid fa-location-dot"></i> Ethiopia</li>
+          <li><i class="fa-solid fa-shield-halved"></i> 100% client-side processing</li>
+        </ul>
+        <a href="about.html" class="btn btn-soft btn-sm" style="margin-top:6px;">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="footer-stats">
+      <div><strong>13+</strong><span>Free Tools</span></div>
+      <div><strong>4</strong><span>Categories</span></div>
+      <div><strong>100%</strong><span>Private</span></div>
+      <div><strong>0</strong><span>Ads Interrupting</span></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="footer-year"></span> EthioSync. All rights reserved.</span>
+      <div>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var API = "https://api.frankfurter.dev";
+  var currencies = [];
+  var currencyMap = {};
+
+  // Popular currencies for quick rates and default selections
+  var QUICK_PAIRS = [
+    ["EUR","USD"], ["USD","ETB"], ["GBP","USD"],
+    ["USD","CNY"], ["USD","INR"], ["EUR","GBP"]
+  ];
+
+  // Currency symbols / flags for nicer display
+  var SYMBOLS = {
+    USD:"$", EUR:"\u20ac", GBP:"\u00a3", JPY:"\u00a5", CNY:"\u00a5", ETB:"Br",
+    INR:"\u20b9", CHF:"Fr", AUD:"A$", CAD:"C$", SEK:"kr", NOK:"kr", DKK:"kr",
+    RUB:"\u20bd", BRL:"R$", ZAR:"R", NGN:"\u20a6", KES:"KSh", AED:"AED",
+    SAR:"SAR", TRY:"\u20ba", KRW:"\u20a9", MXN:"$", SGD:"S$", HKD:"HK$",
+    NZD:"NZ$", PLN:"z\u0142", CZK:"K\u010d", HUF:"Ft", RON:"lei", BGN:"lev",
+    ILS:"\u20aa", THB:"\u0e3f", IDR:"Rp", MYR:"RM", PHP:"\u20b1", PKR:"Rs",
+    BDT:"Tk", EGP:"E\u00a3", MAD:"DH", TND:"DT", GHS:"GH\u20b5", UGX:"USh",
+    TZS:"TSh", RWF:"RF", ETB2:"Br", XAF:"FCFA", XOF:"CFA", XAU:"Au", XAG:"Ag"
+  };
+
+  var elFrom = document.getElementById("cc-from");
+  var elTo = document.getElementById("cc-to");
+  var elAmount = document.getElementById("cc-amount");
+  var elConvert = document.getElementById("cc-convert");
+  var elSwap = document.getElementById("cc-swap");
+  var elResult = document.getElementById("cc-result");
+  var elResAmount = document.getElementById("cc-res-amount");
+  var elResSub = document.getElementById("cc-res-sub");
+  var elResRate = document.getElementById("cc-res-rate");
+  var elResDate = document.getElementById("cc-res-date");
+  var elStatus = document.getElementById("conv-status");
+  var elStatusText = document.getElementById("conv-status-text");
+  var elStatusDot = elStatus.querySelector(".dot");
+  var elQuick = document.getElementById("cc-quick");
+  var elPopular = document.getElementById("cc-popular");
+
+  function setStatus(state, text){
+    elStatusDot.className = "dot " + state;
+    elStatusText.textContent = text;
+  }
+
+  function fmtMoney(amount, code){
+    var sym = SYMBOLS[code] || "";
+    var formatted;
+    try {
+      formatted = new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: 2, maximumFractionDigits: 4
+      }).format(amount);
+    } catch(e){
+      formatted = amount.toFixed(2);
+    }
+    return (sym ? sym + " " : "") + formatted + " " + code;
+  }
+
+  function fmtRate(rate){
+    var decimals = rate >= 100 ? 4 : rate >= 1 ? 6 : 8;
+    return rate.toFixed(decimals);
+  }
+
+  function buildSelects(){
+    var html = "";
+    for (var i = 0; i < currencies.length; i++){
+      var c = currencies[i];
+      html += '<option value="' + c.code + '">' + c.code + " \u2014 " + c.name + "</option>";
+    }
+    elFrom.innerHTML = html;
+    elTo.innerHTML = html;
+    elFrom.value = "USD";
+    elTo.value = "ETB";
+    elFrom.disabled = false;
+    elTo.disabled = false;
+    elConvert.disabled = false;
+  }
+
+  function loadCurrencies(){
+    setStatus("loading", "Loading currencies\u2026");
+    fetch(API + "/v2/currencies")
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        // data is an array of currency objects with iso_code, name, type, symbol
+        var list = data || [];
+        // Only include active currencies (type currency or metal), sorted by code
+        var filtered = [];
+        for (var i = 0; i < list.length; i++){
+          var item = list[i];
+          if (item.end_date && item.end_date < "2026-01-01") continue; // skip very stale
+          filtered.push({
+            code: item.iso_code,
+            name: item.name,
+            type: item.type,
+            symbol: item.symbol || ""
+          });
+        }
+        // Sort: currencies first, then metals, then crypto, alphabetically
+        var typeOrder = { currency: 0, metal: 1, crypto: 2 };
+        filtered.sort(function(a, b){
+          var ta = typeOrder[a.type] !== undefined ? typeOrder[a.type] : 3;
+          var tb = typeOrder[b.type] !== undefined ? typeOrder[b.type] : 3;
+          if (ta !== tb) return ta - tb;
+          return a.code.localeCompare(b.code);
+        });
+        currencies = filtered;
+        // Build a map for quick lookups
+        for (var i = 0; i < currencies.length; i++){
+          currencyMap[currencies[i].code] = currencies[i];
+        }
+        // Ensure key currencies exist
+        if (!currencyMap["USD"]){ currencies.unshift({code:"USD",name:"US Dollar",type:"currency"}); currencyMap["USD"] = currencies[0]; }
+        if (!currencyMap["ETB"]){ currencies.push({code:"ETB",name:"Ethiopian Birr",type:"currency"}); currencyMap["ETB"] = currencies[currencies.length-1]; }
+        buildSelects();
+        setStatus("", currencies.length + " currencies available");
+        elStatusDot.className = "dot";
+        doConvert();
+        loadQuickRates();
+      })
+      .catch(function(err){
+        setStatus("error", "Failed to load currencies. Check your connection.");
+        console.error("Currency load error:", err);
+      });
+  }
+
+  function doConvert(){
+    var from = elFrom.value;
+    var to = elTo.value;
+    var amount = parseFloat(elAmount.value);
+
+    if (!from || !to){
+      elResult.style.display = "none";
+      return;
+    }
+    if (!Number.isFinite(amount) || amount < 0){
+      elResult.style.display = "none";
+      return;
+    }
+    if (from === to){
+      elResult.style.display = "block";
+      elResAmount.textContent = fmtMoney(amount, from);
+      elResSub.textContent = "1 " + from + " = 1 " + to;
+      elResRate.innerHTML = '<i class="fa-solid fa-equals"></i> 1 ' + from + " = 1 " + to;
+      elResDate.innerHTML = '<i class="fa-solid fa-calendar-day"></i> Today';
+      return;
+    }
+
+    setStatus("loading", "Fetching rate\u2026");
+    elConvert.disabled = true;
+
+    fetch(API + "/v2/rate/" + from.toLowerCase() + "/" + to.toLowerCase())
+      .then(function(r){
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function(data){
+        var rate = data.rate;
+        var converted = amount * rate;
+        elResult.style.display = "block";
+        elResAmount.textContent = fmtMoney(converted, to);
+        elResSub.textContent = fmtMoney(amount, from) + " =";
+        elResRate.innerHTML = '<i class="fa-solid fa-arrow-right-arrow-left"></i> 1 ' + from + " = " + fmtRate(rate) + " " + to;
+        elResDate.innerHTML = '<i class="fa-solid fa-calendar-day"></i> Rates as of ' + data.date;
+        setStatus("", currencies.length + " currencies \u00b7 live");
+        elStatusDot.className = "dot";
+      })
+      .catch(function(err){
+        setStatus("error", "Could not fetch rate. Try again.");
+        elResult.style.display = "none";
+        console.error("Convert error:", err);
+      })
+      .finally(function(){
+        elConvert.disabled = false;
+      });
+  }
+
+  function loadQuickRates(){
+    var html = "";
+    var pending = QUICK_PAIRS.length;
+    QUICK_PAIRS.forEach(function(pair){
+      var base = pair[0], quote = pair[1];
+      html += '<div class="quick-card" data-from="' + base + '" data-to="' + quote + '">';
+      html += '<div class="qc-top"><span class="qc-pair">' + base + '/' + quote + '</span><span class="qc-rate" data-qrate="' + base + quote + '">\u2026</span></div>';
+      html += '<div class="qc-inv" data-qinv="' + base + quote + '">1 ' + quote + ' = \u2026 ' + base + '</div>';
+      html += '</div>';
+    });
+    elQuick.innerHTML = html;
+
+    // Fetch rates for each quick pair
+    QUICK_PAIRS.forEach(function(pair){
+      var base = pair[0], quote = pair[1];
+      fetch(API + "/v2/rate/" + base.toLowerCase() + "/" + quote.toLowerCase())
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var rateEl = elQuick.querySelector('[data-qrate="' + base + quote + '"]');
+          var invEl = elQuick.querySelector('[data-qinv="' + base + quote + '"]');
+          if (rateEl) rateEl.textContent = fmtRate(data.rate);
+          if (invEl) invEl.textContent = "1 " + quote + " = " + fmtRate(1 / data.rate) + " " + base;
+        })
+        .catch(function(){ /* silently fail for quick rates */ });
+    });
+
+    // Wire click handlers
+    elQuick.querySelectorAll(".quick-card").forEach(function(card){
+      card.addEventListener("click", function(){
+        elFrom.value = card.getAttribute("data-from");
+        elTo.value = card.getAttribute("data-to");
+        doConvert();
+        document.querySelector(".tool-main").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
+  // Event handlers
+  elConvert.addEventListener("click", doConvert);
+
+  elAmount.addEventListener("input", function(){
+    // Auto-convert on amount change (debounced)
+    clearTimeout(window.__ccTimer);
+    window.__ccTimer = setTimeout(doConvert, 400);
+  });
+
+  elFrom.addEventListener("change", doConvert);
+  elTo.addEventListener("change", doConvert);
+
+  elSwap.addEventListener("click", function(){
+    var tmp = elFrom.value;
+    elFrom.value = elTo.value;
+    elTo.value = tmp;
+    doConvert();
+  });
+
+  // Popular pair clicks from sidebar
+  elPopular.querySelectorAll("a[data-pair]").forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      var parts = a.getAttribute("data-pair").split("/");
+      elFrom.value = parts[0];
+      elTo.value = parts[1];
+      doConvert();
+      document.querySelector(".tool-main").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  // Enter key triggers convert
+  elAmount.addEventListener("keydown", function(e){
+    if (e.key === "Enter"){ e.preventDefault(); doConvert(); }
+  });
+
+  // Init
+  loadCurrencies();
+})();
+</script>
+</body>
+</html>

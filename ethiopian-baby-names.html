@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethiopian &amp; Biblical Baby Names — Meanings &amp; Origins | EthioSync</title>
+<meta name="description" content="Explore 750+ Ethiopian, Amharic and biblical names with meanings, origins, pronunciation and scripture references. Search and filter by gender, origin or first letter.">
+<meta name="keywords" content="Ethiopian baby names, Amharic names, biblical names, name meanings, Ethiopian names, biblical names in Amharic">
+<link rel="canonical" href="https://kronos.alc.onl/ethiopian-baby-names.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ethiopian &amp; Biblical Baby Names — Meanings &amp; Origins | EthioSync">
+<meta property="og:description" content="Explore 750+ Ethiopian, Amharic and biblical names with meanings, origins and scripture references.">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/tool.css">
+<link rel="stylesheet" href="css/ethiosync-tools.css">
+<style>
+/* ---------- Baby names tool specific styles ---------- */
+.name-toolbar{ display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; margin-bottom:18px; }
+.name-toolbar .field-group{ flex:1; min-width:200px; margin-bottom:0; }
+.name-toolbar .field-group.small{ flex:0 0 140px; }
+
+.letter-bar{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
+.letter-bar button{
+  min-width:34px; height:34px; border-radius:8px; border:1.5px solid var(--border);
+  background:var(--card-bg); color:var(--text-dim); font-weight:600; cursor:pointer; transition:.15s ease;
+}
+.letter-bar button:hover{ border-color:var(--brand); color:var(--brand-ink); }
+.letter-bar button.active{ background:var(--grad-brand); color:#fff; border-color:transparent; box-shadow:var(--shadow-glow); }
+
+.name-stats{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:18px; }
+.name-stats .stat-pill{
+  display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:var(--radius-pill);
+  background:var(--paper-dim); font-size:.85rem; font-weight:600; color:var(--text-dim);
+}
+html[data-theme="dark"] .name-stats .stat-pill{ background:var(--ink-800); }
+
+.names-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+.name-card{
+  background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-lg);
+  padding:20px; transition:.15s ease; position:relative;
+}
+.name-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--brand-ink); }
+html[data-theme="dark"] .name-card:hover{ border-color:#c7c3ff; }
+.name-card .nc-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px; }
+.name-card .nc-name{ font-family:var(--font-display); font-size:1.35rem; font-weight:700; color:var(--text); line-height:1.2; }
+.name-card .nc-amharic{ font-size:1.1rem; color:var(--brand-ink); margin-top:2px; }
+html[data-theme="dark"] .name-card .nc-amharic{ color:#c7c3ff; }
+.name-card .nc-pron{ font-size:.82rem; color:var(--text-dim); font-family:var(--font-mono); margin-top:4px; }
+.name-card .nc-badges{ display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+.name-card .nc-badge{
+  display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:var(--radius-pill);
+  font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+}
+.name-card .nc-badge.gender-m{ background:rgba(91,91,246,.12); color:var(--brand-ink); }
+.name-card .nc-badge.gender-f{ background:rgba(255,92,120,.12); color:var(--danger); }
+.name-card .nc-badge.gender-u{ background:rgba(18,217,164,.12); color:var(--accent-ink); }
+html[data-theme="dark"] .nc-badge.gender-m{ background:rgba(139,123,255,.18); color:#c7c3ff; }
+html[data-theme="dark"] .nc-badge.gender-f{ background:rgba(255,92,120,.16); color:#ff8a9d; }
+html[data-theme="dark"] .nc-badge.gender-u{ background:rgba(18,217,164,.15); color:#12d9a4; }
+.name-card .nc-origin{ background:var(--paper-dim); color:var(--text-dim); }
+html[data-theme="dark"] .name-card .nc-origin{ background:var(--ink-800); }
+.name-card .nc-meaning{ color:var(--text); font-size:.92rem; margin:12px 0 10px; line-height:1.5; }
+.name-card .nc-desc{ color:var(--text-dim); font-size:.85rem; line-height:1.55; display:none; }
+.name-card.expanded .nc-desc{ display:block; }
+.name-card .nc-actions{ display:flex; gap:8px; margin-top:14px; }
+.name-card .nc-actions button{
+  flex:1; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--border);
+  background:var(--bg-alt); color:var(--text-dim); font-size:.8rem; font-weight:600; cursor:pointer; transition:.15s ease;
+}
+.name-card .nc-actions button:hover{ border-color:var(--brand); color:var(--brand-ink); }
+.name-card .nc-ref{ font-size:.78rem; color:var(--text-dim); margin-top:10px; font-family:var(--font-mono); }
+.name-card .nc-ref i{ color:var(--brand); margin-right:4px; }
+
+.load-more-wrap{ text-align:center; margin-top:28px; }
+
+@media (max-width:520px){
+  .names-grid{ grid-template-columns:1fr; }
+  .name-toolbar .field-group{ min-width:100%; }
+}
+</style>
+
+<meta name="ethiosync-title-en" content="Ethiopian &amp; Biblical Baby Names — Meanings &amp; Origins | EthioSync">
+<meta name="ethiosync-description-en" content="Explore 750+ Ethiopian, Amharic and biblical names with meanings, origins, pronunciation and scripture references. Search and filter by gender, origin or first letter.">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="author" content="EthioSync">
+<meta name="theme-color" content="#0b1020">
+<meta property="og:site_name" content="EthioSync">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="am_ET">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ethiopian &amp; Biblical Baby Names — Meanings &amp; Origins | EthioSync">
+<meta property="og:description" content="Explore 750+ Ethiopian, Amharic and biblical names with meanings, origins, pronunciation and scripture references. Search and filter by gender, origin or first letter.">
+<meta property="og:url" content="https://kronos.alc.onl/ethiopian-baby-names.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ethiopian &amp; Biblical Baby Names — Meanings &amp; Origins | EthioSync">
+<meta name="twitter:description" content="Explore 750+ Ethiopian, Amharic and biblical names with meanings, origins, pronunciation and scripture references. Search and filter by gender, origin or first letter.">
+<link rel="alternate" hreflang="en" href="https://kronos.alc.onl/ethiopian-baby-names.html">
+<link rel="alternate" hreflang="am" href="https://kronos.alc.onl/ethiopian-baby-names.html?lang=am">
+<link rel="alternate" hreflang="x-default" href="https://kronos.alc.onl/ethiopian-baby-names.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kronos.alc.onl/#organization","name":"EthioSync","url":"https://kronos.alc.onl/","logo":{"@type":"ImageObject","url":"https://kronos.alc.onl/images/favicon.svg"}},{"@type":"WebPage","@id":"https://kronos.alc.onl/ethiopian-baby-names.html#webpage","url":"https://kronos.alc.onl/ethiopian-baby-names.html","name":"Ethiopian & Biblical Baby Names — Meanings & Origins | EthioSync","description":"Explore 750+ Ethiopian, Amharic and biblical names with meanings, origins, pronunciation and scripture references. Search and filter by gender, origin or first letter.","inLanguage":["en","am"],"isPartOf":{"@type":"WebSite","name":"EthioSync","url":"https://kronos.alc.onl/"},"publisher":{"@id":"https://kronos.alc.onl/#organization"}},{"@type":"WebApplication","name":"Ethiopian & Biblical Baby Names","url":"https://kronos.alc.onl/ethiopian-baby-names.html","description":"Explore 750+ Ethiopian, Amharic and biblical names with meanings, origins, pronunciation and scripture references. Search and filter by gender, origin or first letter.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["en","am"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://kronos.alc.onl/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kronos.alc.onl/"},{"@type":"ListItem","position":2,"name":"Reference","item":"https://kronos.alc.onl/"},{"@type":"ListItem","position":3,"name":"Ethiopian & Biblical Baby Names"}]}]}</script>
+</head>
+<body>
+<div id="language-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-hourglass-half"></i></span>EthioSync</a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <div class="nav-item">
+        <a href="index.html#all-tools" class="nav-drop-btn">All Tools <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="nav-dropdown">
+          <a href="index.html#cat-calendar"><i class="fa-solid fa-calendar-days"></i> Calendar Tools</a>
+          <a href="index.html#cat-language"><i class="fa-solid fa-language"></i> Amharic &amp; Language</a>
+          <a href="index.html#cat-finance"><i class="fa-solid fa-calculator"></i> Finance &amp; Work</a>
+          <a href="index.html#cat-reference"><i class="fa-solid fa-book-open"></i> Reference</a>
+        </div>
+      </div>
+      <a href="resources.html">Resources</a>
+      <a href="blog.html">Blog</a>
+      <a href="games.html">Games</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="header-actions">
+      <label class="language-control" aria-label="Website language"><span class="sr-only">Language</span><select class="language-select notranslate" aria-label="Select language"><option value="en">EN</option><option value="am">አማርኛ</option></select></label>
+      <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+      <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav">
+  <a href="index.html">Home</a>
+  <div class="m-nav-item">
+    <a href="index.html#all-tools" class="nav-drop-btn">All Tools <i class="fa-solid fa-chevron-down"></i></a>
+    <div class="m-sub">
+      <a href="index.html#cat-calendar"><i class="fa-solid fa-calendar-days"></i> Calendar Tools</a>
+      <a href="index.html#cat-language"><i class="fa-solid fa-language"></i> Amharic &amp; Language</a>
+      <a href="index.html#cat-finance"><i class="fa-solid fa-calculator"></i> Finance &amp; Work</a>
+      <a href="index.html#cat-reference"><i class="fa-solid fa-book-open"></i> Reference</a>
+    </div>
+  </div>
+  <a href="resources.html">Resources</a>
+  <a href="blog.html">Blog</a>
+  <a href="games.html">Games</a>
+  <a href="about.html">About EthioSync</a>
+</div>
+
+<div class="tool-header">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> <i class="fa-solid fa-chevron-right" style="font-size:.6rem;"></i> <a href="index.html#cat-reference">Reference</a> <i class="fa-solid fa-chevron-right" style="font-size:.6rem;"></i> Ethiopian &amp; Biblical Baby Names</p>
+    <div class="tool-header-top">
+      <div class="tool-title-block">
+        <span class="tool-title-icon"><i class="fa-solid fa-baby"></i></span>
+        <div>
+          <h1>Ethiopian &amp; Biblical Baby Names</h1>
+          <p>Explore 750+ biblical names with meanings, origins, pronunciation and scripture references.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="container tool-layout">
+  <div class="tool-main">
+    <div class="panel">
+      <div class="name-toolbar">
+        <div class="field-group"><label for="name-q">Search names</label><input type="text" id="name-q" class="form-control" placeholder="e.g. Daniel, Mercy, light…"></div>
+        <div class="field-group small"><label for="name-filter">Gender</label><select id="name-filter" class="form-control"><option>All</option><option>Male</option><option>Female</option><option>Unisex</option></select></div>
+        <div class="field-group small"><label for="name-origin">Origin</label><select id="name-origin" class="form-control"><option>All</option></select></div>
+      </div>
+      <div class="letter-bar" id="letter-bar" aria-label="Filter by first letter"></div>
+      <div class="name-stats" id="name-stats"></div>
+      <div id="name-output"></div>
+      <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+        <button class="btn btn-ghost" id="load-more"><i class="fa-solid fa-chevron-down"></i> Load more names</button>
+      </div>
+    </div>
+
+    <div class="panel info-accordion">
+      <h2 style="margin-bottom:0;">About these names</h2>
+      <details open>
+        <summary>What is the source of these names?</summary>
+        <p>This directory is built from <em>A Dictionary of Ancient &amp; Beautiful Biblical Names in the Royal Amharic</em>, compiled by Tehetena Girma-Asfaw and co-edited by Ras Iadonis Tafari, presented by the Lion of Judah Society. The entries include anglicised biblical names, Hebrew/Greek/Latin origins, meanings and scripture references.</p>
+      </details>
+      <details>
+        <summary>Why is the Amharic script not shown?</summary>
+        <p>The source PDF encodes Amharic characters with embedded fonts that do not map to standard Unicode text, so the script could not be extracted reliably. The English names, pronunciations, meanings and references are preserved exactly from the source.</p>
+      </details>
+      <details>
+        <summary>How are genders classified?</summary>
+        <p>The source uses several gender markers. Entries marked "male" or "female" are classified accordingly. Entries marked "modern male and female", "traditionally male and female", "male and female" or "unisex" are shown as Unisex.</p>
+      </details>
+    </div>
+  </div>
+
+  <aside class="tool-sidebar">
+    <div class="panel">
+      <h3>Related tools</h3>
+      <ul class="related-list">
+        <li><a href="amharic-keyboard.html"><i class="fa-solid fa-keyboard"></i> Amharic Keyboard</a></li>
+        <li><a href="amharic-numbers.html"><i class="fa-solid fa-list-ol"></i> Amharic Numbers Converter</a></li>
+        <li><a href="amharic-text-tools.html"><i class="fa-solid fa-font"></i> Amharic Text Tools</a></li>
+        <li><a href="ethiopian-calendar.html"><i class="fa-solid fa-calendar-days"></i> Ethiopian Calendar</a></li>
+      </ul>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="color:#fff;margin-bottom:14px;">
+          <span class="brand-mark"><i class="fa-solid fa-hourglass-half"></i></span>
+          EthioSync
+        </div>
+        <p>Practical Ethiopian calendar tools, Amharic resources, calculators and clear cultural guides for everyday use.</p>
+        <div class="footer-badges">
+          <span>Calendar</span><span>Amharic</span><span>Finance</span><span>Reference</span>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#all-tools">All Tools</a></li>
+          <li><a href="ethiopian-date-converter.html">Date Converter</a></li>
+          <li><a href="ethiopian-age-calculator.html">Age Calculator</a></li>
+          <li><a href="ethiopia-income-tax-calculator.html">Income Tax Calculator</a></li>
+          <li><a href="amharic-keyboard.html">Amharic Keyboard</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="games.html">Games</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Top Tools</h4>
+        <ul>
+          <li><a href="ethiopian-calendar.html">Ethiopian Calendar</a></li>
+          <li><a href="ethiopian-holidays.html">Holidays &amp; Fasting</a></li>
+          <li><a href="ethiopia-overtime-calculator.html">Overtime Calculator</a></li>
+          <li><a href="currency-converter.html">Currency Converter</a></li>
+          <li><a href="time-in-ethiopia.html">Time in Ethiopia</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-envelope"></i> EthioSync@alchosting.xyz</li>
+          <li><i class="fa-solid fa-location-dot"></i> Ethiopia</li>
+          <li><i class="fa-solid fa-shield-halved"></i> 100% client-side processing</li>
+        </ul>
+        <a href="about.html" class="btn btn-soft btn-sm" style="margin-top:6px;">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="footer-stats">
+      <div><strong>13+</strong><span>Free Tools</span></div>
+      <div><strong>4</strong><span>Categories</span></div>
+      <div><strong>100%</strong><span>Private</span></div>
+      <div><strong>0</strong><span>Ads Interrupting</span></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="footer-year"></span> EthioSync. All rights reserved.</span>
+      <div>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script src="js/et-names-data.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  // ET_NAMES format: [name, amharic, gender, origin, meaning, description, reference, pronunciation]
+  var PAGE_SIZE = 24;
+  var currentPage = 1;
+  var activeLetter = '';
+
+  var q = document.getElementById('name-q');
+  var filter = document.getElementById('name-filter');
+  var originSelect = document.getElementById('name-origin');
+  var letterBar = document.getElementById('letter-bar');
+  var output = document.getElementById('name-output');
+  var stats = document.getElementById('name-stats');
+  var loadMoreBtn = document.getElementById('load-more');
+  var loadMoreWrap = document.getElementById('load-more-wrap');
+
+  // Build origin options
+  var origins = {};
+  ET_NAMES.forEach(function(x){ origins[x[3]] = (origins[x[3]] || 0) + 1; });
+  Object.keys(origins).sort().forEach(function(o){
+    var opt = document.createElement('option');
+    opt.value = o;
+    opt.textContent = o + ' (' + origins[o] + ')';
+    originSelect.appendChild(opt);
+  });
+
+  // Build letter bar
+  var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+  var allBtn = document.createElement('button');
+  allBtn.textContent = 'All';
+  allBtn.className = 'active';
+  allBtn.addEventListener('click', function(){ setLetter(''); });
+  letterBar.appendChild(allBtn);
+  letters.forEach(function(l){
+    var btn = document.createElement('button');
+    btn.textContent = l;
+    btn.addEventListener('click', function(){ setLetter(l); });
+    letterBar.appendChild(btn);
+  });
+
+  function setLetter(l){
+    activeLetter = l;
+    Array.from(letterBar.children).forEach(function(b){ b.classList.toggle('active', b.textContent === (l || 'All')); });
+    currentPage = 1;
+    draw();
+  }
+
+  function getFiltered(){
+    var needle = q.value.trim().toLowerCase();
+    var g = filter.value;
+    var o = originSelect.value;
+    return ET_NAMES.filter(function(x){
+      var name = x[0].toLowerCase();
+      var meaning = (x[4] || '').toLowerCase();
+      var desc = (x[5] || '').toLowerCase();
+      var origin = x[3];
+      var gender = x[2];
+      var matchQ = !needle || name.indexOf(needle) !== -1 || meaning.indexOf(needle) !== -1 || desc.indexOf(needle) !== -1;
+      var matchG = g === 'All' || gender === g;
+      var matchO = o === 'All' || origin === o;
+      var matchL = !activeLetter || x[0].charAt(0).toUpperCase() === activeLetter;
+      return matchQ && matchG && matchO && matchL;
+    });
+  }
+
+  function genderClass(g){ return g === 'Male' ? 'gender-m' : g === 'Female' ? 'gender-f' : 'gender-u'; }
+  function genderIcon(g){ return g === 'Male' ? 'fa-mars' : g === 'Female' ? 'fa-venus' : 'fa-venus-mars'; }
+
+  function draw(){
+    var list = getFiltered();
+    var total = list.length;
+    var showing = Math.min(currentPage * PAGE_SIZE, total);
+    var pageList = list.slice(0, showing);
+
+    stats.innerHTML =
+      '<span class="stat-pill"><i class="fa-solid fa-list"></i> ' + total + ' names found</span>' +
+      '<span class="stat-pill"><i class="fa-solid fa-mars"></i> ' + ET_NAMES.filter(function(x){return x[2]==='Male';}).length + ' male</span>' +
+      '<span class="stat-pill"><i class="fa-solid fa-venus"></i> ' + ET_NAMES.filter(function(x){return x[2]==='Female';}).length + ' female</span>' +
+      '<span class="stat-pill"><i class="fa-solid fa-venus-mars"></i> ' + ET_NAMES.filter(function(x){return x[2]==='Unisex';}).length + ' unisex</span>';
+
+    if (!total){
+      output.innerHTML = '<p class="EthioSync-error"><i class="fa-solid fa-circle-info"></i> No matching names. Try a broader search or clear filters.</p>';
+      loadMoreWrap.style.display = 'none';
+      return;
+    }
+
+    output.innerHTML = '<p style="color:var(--text-dim);font-size:.9rem;margin-bottom:14px;">Showing ' + showing + ' of ' + total + ' names</p>' +
+      '<div class="names-grid">' + pageList.map(function(x){
+        var name = x[0];
+        var amharic = x[1];
+        var gender = x[2];
+        var origin = x[3];
+        var meaning = x[4];
+        var desc = x[5];
+        var ref = x[6];
+        var pron = x[7];
+        return '<div class="name-card" data-name="' + name + '">' +
+          '<div class="nc-top">' +
+            '<div>' +
+              '<div class="nc-name">' + name + '</div>' +
+              (amharic ? '<div class="nc-amharic" lang="am">' + amharic + '</div>' : '') +
+              (pron ? '<div class="nc-pron"><i class="fa-solid fa-volume-low"></i> ' + pron + '</div>' : '') +
+            '</div>' +
+          '</div>' +
+          '<div class="nc-badges">' +
+            '<span class="nc-badge ' + genderClass(gender) + '"><i class="fa-solid ' + genderIcon(gender) + '"></i> ' + gender + '</span>' +
+            '<span class="nc-badge nc-origin"><i class="fa-solid fa-globe"></i> ' + origin + '</span>' +
+          '</div>' +
+          '<div class="nc-meaning"><strong>Meaning:</strong> ' + meaning + '</div>' +
+          '<div class="nc-desc">' + desc + '</div>' +
+          (ref ? '<div class="nc-ref"><i class="fa-solid fa-book-open"></i> ' + ref + '</div>' : '') +
+          '<div class="nc-actions">' +
+            '<button class="nc-toggle"><i class="fa-solid fa-circle-info"></i> Details</button>' +
+            '<button class="nc-copy"><i class="fa-solid fa-copy"></i> Copy</button>' +
+          '</div>' +
+        '</div>';
+      }).join('') + '</div>';
+
+    // Wire card buttons
+    output.querySelectorAll('.nc-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var card = btn.closest('.name-card');
+        card.classList.toggle('expanded');
+        btn.innerHTML = card.classList.contains('expanded') ?
+          '<i class="fa-solid fa-chevron-up"></i> Less' :
+          '<i class="fa-solid fa-circle-info"></i> Details';
+      });
+    });
+    output.querySelectorAll('.nc-copy').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var name = btn.closest('.name-card').getAttribute('data-name');
+        window.NT.copyText(name, 'Copied "' + name + '"');
+      });
+    });
+
+    loadMoreWrap.style.display = showing < total ? 'block' : 'none';
+  }
+
+  q.addEventListener('input', function(){ currentPage = 1; draw(); });
+  filter.addEventListener('change', function(){ currentPage = 1; draw(); });
+  originSelect.addEventListener('change', function(){ currentPage = 1; draw(); });
+  loadMoreBtn.addEventListener('click', function(){ currentPage++; draw(); });
+
+  draw();
+})();
+</script>
+</body>
+</html>
