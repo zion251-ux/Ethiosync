@@ -10,5 +10,15 @@ function etIsEthLeap(y){return y%4===3;}
 function etEthMonthDays(y,m){return m===13?(etIsEthLeap(y)?6:5):30;}
 function etValidEth(y,m,d){return Number.isInteger(y)&&y>=1&&Number.isInteger(m)&&m>=1&&m<=13&&Number.isInteger(d)&&d>=1&&d<=etEthMonthDays(y,m);}
 function etEatToday(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Addis_Ababa',year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date()),v={};p.forEach(x=>{if(x.type!=='literal')v[x.type]=Number(x.value)});return {year:v.year,month:v.month,day:v.day};}
-function etFmtGreg(g){return new Date(Date.UTC(g.year,g.month-1,g.day)).toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric',timeZone:'UTC'});}
-function etFmtEth(e){return ET_MONTHS[e.month-1][0]+' '+e.day+', '+e.year+' EC · '+e.day+' '+ET_MONTHS[e.month-1][1]+' '+e.year;}
+function etFmtGreg(g){
+ if(document.documentElement.lang==='am'){
+  const days=['እሑድ','ሰኞ','ማክሰኞ','ረቡዕ','ሐሙስ','ዓርብ','ቅዳሜ'],months=['ጃንዩወሪ','ፌብሩወሪ','ማርች','ኤፕሪል','ሜይ','ጁን','ጁላይ','ኦገስት','ሴፕቴምበር','ኦክቶበር','ኖቬምበር','ዲሴምበር'];
+  const weekday=new Date(Date.UTC(g.year,g.month-1,g.day)).getUTCDay();
+  return days[weekday]+'፣ '+g.day+' '+months[g.month-1]+' '+g.year;
+ }
+ return new Date(Date.UTC(g.year,g.month-1,g.day)).toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric',timeZone:'UTC'});
+}
+function etFmtEth(e){
+ if(document.documentElement.lang==='am') return e.day+' '+ET_MONTHS[e.month-1][1]+' '+e.year+' ዓ.ኢ.';
+ return ET_MONTHS[e.month-1][0]+' '+e.day+', '+e.year+' EC · '+e.day+' '+ET_MONTHS[e.month-1][1]+' '+e.year;
+}

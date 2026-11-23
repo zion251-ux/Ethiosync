@@ -36,6 +36,162 @@
     'Search tools':'መሣሪያዎችን ፈልግ',
     'Practical Ethiopian calendar tools, Amharic resources, calculators and clear cultural guides for everyday use.':'ለዕለት ተዕለት አገልግሎት ተግባራዊ የኢትዮጵያ ቀን መቁጠሪያ መሣሪያዎች፣ የአማርኛ ግብዓቶች፣ አካውንተሮች እና ግልጽ የባሕል መመሪያዎች።'
   };
+
+  Object.assign(ui, {
+  "Amharic": "አማርኛ",
+  "Holidays & Fasting Calendar": "የበዓላት እና ጾሞች ቀን መቁጠሪያ",
+  "Amharic Numbers Converter": "የአማርኛ ቁጥሮች መለወጫ",
+  "Amharic Text Tools": "የአማርኛ ጽሑፍ መሣሪያዎች",
+  "Overtime Pay Calculator": "የተጨማሪ ሰዓት ክፍያ አካውንተር",
+  "Annual Leave Calculator": "የዓመታዊ ሕግ ፍቃድ አካውንተር",
+  "Ethiopian Baby Names": "የኢትዮጵያ የሕፃናት ስሞች",
+  "Ethiopian & Biblical Baby Names": "የኢትዮጵያ እና የመጽሐፍ ቅዱስ የሕፃናት ስሞች",
+  "View the current Ethiopian month, date and year, with the 13-month system explained.": "የአሁኑን የኢትዮጵያ ወር፣ ቀን እና ዓመት ከ13 ወራት ሥርዓቱ ማብራሪያ ጋር ይመልከቱ።",
+  "Convert dates between the Ethiopian and Gregorian calendar systems instantly.": "ቀኖችን በኢትዮጵያ እና በግሪጎሪያን ቀን መቁጠሪያ መካከል ወዲያውኑ ይለውጡ።",
+  "Calculate an exact age from an Ethiopian birth date, or convert it to Gregorian.": "ከኢትዮጵያ የትውልድ ቀን ትክክለኛ ዕድሜ ይቁጠሩ ወይም ወደ ግሪጎሪያን ይለውጡ።",
+  "Keep track of public holidays, religious observances and major fasting periods.": "ሕዝባዊ በዓላትን፣ ሃይማኖታዊ በዓላትን እና ዋና ጾሞችን ይከታተሉ።",
+  "Type Amharic text from any desktop or mobile device with a simple online keyboard.": "በቀላል የመስመር ላይ ኪቦርድ ከኮምፒውተር ወይም ከስልክ አማርኛ ይጻፉ።",
+  "Convert ordinary numbers into Amharic words or Ethiopic numerals.": "መደበኛ ቁጥሮችን ወደ አማርኛ ቃላት ወይም ግዕዝ ቁጥሮች ይለውጡ።",
+  "Text sorting, cleaning, phonetic and language-reference utilities for Amharic.": "ለአማርኛ የጽሑፍ ማደራጃ፣ ማጽጃ እና የቋንቋ ማጣቀሻ መሣሪያዎች።",
+  "Estimate Ethiopian employment income tax and understand common payroll deductions.": "የኢትዮጵያ የሥራ ገቢ ታክስ ይገምቱ እና የደመወዝ ቅነሳዎችን ይረዱ።",
+  "Calculate overtime compensation using hourly rate and overtime hours worked.": "በሰዓተኛ ተመን እና በተሠሩ ተጨማሪ ሰዓቶች ክፍያ ይቁጠሩ።",
+  "Convert between 200+ world currencies using live exchange rates from the free Frankfurter API.": "ከ200 በላይ የዓለም ምንዛሬዎችን በወቅታዊ ተመኖች ይለውጡ።",
+  "Estimate annual leave entitlement based on Ethiopian employment guidance.": "በኢትዮጵያ የሥራ መመሪያ መሠረት የዓመታዊ ሕግ ፍቃድ ይገምቱ።",
+  "Check East Africa Time and learn how Ethiopia’s traditional time system works.": "የምሥራቅ አፍሪካ ሰዓት ይመልከቱ እና ባሕላዊውን የኢትዮጵያ ሰዓት ሥርዓት ይረዱ።",
+  "Explore meaningful Ethiopian and Amharic names with origins and descriptions.": "ትርጉም፣ ምንጭ እና ማብራሪያ ካላቸው የኢትዮጵያ እና የአማርኛ ስሞች ጋር ይተዋወቁ።",
+  "View any Ethiopian month with Gregorian dates alongside.": "ማንኛውንም የኢትዮጵያ ወር ከግሪጎሪያን ቀኖች ጋር ይመልከቱ።",
+  "Ethiopian year": "የኢትዮጵያ ዓመት",
+  "Show": "አሳይ",
+  "Prev month": "ቀዳሚ ወር",
+  "Today": "ዛሬ",
+  "Next month": "ቀጣይ ወር",
+  "Select a day for its full Ethiopian and Gregorian dates.": "ሙሉ የኢትዮጵያ እና የግሪጎሪያን ቀኖችን ለማየት ቀን ይምረጡ።",
+  "About the Ethiopian calendar": "ስለ ኢትዮጵያ ቀን መቁጠሪያ",
+  "How does the 13-month system work?": "የ13 ወራት ሥርዓቱ እንዴት ይሠራል?",
+  "The Ethiopian calendar has 12 months of 30 days each, plus a 13th month (Pagume) of 5 days — 6 in a leap year. Leap years occur when the year number modulo 4 equals 3.": "የኢትዮጵያ ቀን መቁጠሪያ 12 የ30 ቀን ወራት እና 5 ቀኖች ያሉት 13ኛው ወር ጳጉሜ አለው፤ በሌፕ ዓመት 6 ቀኖች ይሆናሉ። የዓመቱ ቁጥር በ4 ሲካፈል 3 ቀሪ ሲሆን ሌፕ ዓመት ይሆናል።",
+  "Why is the Ethiopian year different?": "የኢትዮጵያ ዓመት ለምን የተለየ ነው?",
+  "The Ethiopian year count follows a different era (roughly 7–8 years behind the Gregorian calendar), and the new year (Enkutatash) falls on September 11 — or September 12 after a Gregorian leap day.": "የኢትዮጵያ ዓመት አካል ከግሪጎሪያን በ7–8 ዓመታት ይለያል፤ እንቁጣጣሽም ሴፕቴምበር 11 ወይም ከግሪጎሪያን ሌፕ ቀን በኋላ ሴፕቴምበር 12 ይዋላል።",
+  "Mon": "ሰኞ",
+  "Tue": "ማክሰ",
+  "Wed": "ረቡዕ",
+  "Thu": "ሐሙስ",
+  "Fri": "ዓርብ",
+  "Sat": "ቅዳሜ",
+  "Sun": "እሑድ",
+  "Is the conversion exact?": "መለወጫው ትክክል ነው?",
+  "Yes — conversion runs through Julian Day Numbers, so every valid Ethiopian date maps to exactly one Gregorian date and vice versa, including Pagume leap days.": "አዎ — መለወጫው በጁሊያን የቀን ቁጥሮች ስለሚከናወን እያንዳንዱ ትክክለኛ የኢትዮጵያ ቀን ከአንድ የግሪጎሪያን ቀን ጋር ይመሳሰላል፤ የጳጉሜ ሌፕ ቀኖችንም ይጨምራል።",
+  "Invalid Ethiopian date. Pagume has only five or six days.": "ትክክለኛ ያልሆነ የኢትዮጵያ ቀን። ጳጉሜ አምስት ወይም ስድስት ቀኖች ብቻ አሉት።",
+  "Choose a Gregorian date.": "የግሪጎሪያን ቀን ይምረጡ።",
+  "Enter an Ethiopian year from 1 to 9999.": "ከ1 እስከ 9999 ያለ የኢትዮጵያ ዓመት ያስገቡ።",
+  "Calculate an exact age from an Ethiopian birth date.": "ከኢትዮጵያ የትውልድ ቀን ትክክለኛ ዕድሜዎን ይቁጠሩ።",
+  "Birth year (EC)": "የትውልድ ዓመት (ዓ.ኢ.)",
+  "Birth month": "የትውልድ ወር",
+  "Birth day": "የትውልድ ቀን",
+  "Calculate Age": "ዕድሜ አስላ",
+  "How age is calculated": "ዕድሜ እንዴት እንደሚሰላ",
+  "Which calendar is used?": "የትኛው ቀን መቁጠሪያ ይጠቀማል?",
+  "Enter your birth date in the Ethiopian calendar. The tool converts both dates to Julian Day Numbers and computes the exact difference in years, months and days.": "የትውልድ ቀንዎን በኢትዮጵያ ቀን መቁጠሪያ ያስገቡ። መሣሪያው ሁለቱንም ቀኖች ወደ ጁሊያን የቀን ቁጥሮች በመለወጥ ትክክለኛውን የዓመት፣ ወር እና ቀን ልዩነት ያሰላል።",
+  "Public holidays, observances and fasting periods by Ethiopian year.": "ሕዝባዊ በዓላት፣ ሃይማኖታዊ በዓላት እና የጾም ወቅቶች በኢትዮጵያ ዓመት።",
+  "List holidays": "በዓላትን አሳይ",
+  "Holiday notes": "ስለ በዓላት ማስታወሻዎች",
+  "Which holidays are fixed?": "የትኞቹ በዓላት ቋሚ ናቸው?",
+  "Enkutatash, Meskel, Genna and Timket follow the Ethiopian calendar. Other national holidays follow the Gregorian calendar, and religious fasting dates move each year — always confirm with an official calendar.": "እንቁጣጣሽ፣ መስቀል፣ ገና እና ጥምቀት የኢትዮጵያ ቀን መቁጠሪያን ይከተላሉ። ሌሎች ብሔራዊ በዓላት ግሪጎሪያንን ይከተላሉ፤ የጾም ቀኖችም በየዓመቱ ይለዋወጣሉ — ሁሌም ኦፊሻላዊ ቀን መቁጠሪያ ያረጋግጡ።",
+  "Type Amharic fidel from any device — copy and paste anywhere.": "ከማንኛውም መሣሪያ በአማርኛ ፊደል ይጻፉ — ይቅዱ እና በማንኛውም ቦታ ይለጥፉ።",
+  "Your Amharic text": "የእርስዎ አማርኛ ጽሑፍ",
+  "Fidel family": "የፊደል ቤተሰብ",
+  "Space": "ክፍተት",
+  "Backspace": "ኋላ ሰረዝ",
+  "Typing Amharic": "አማርኛ መጻፍ",
+  "Do I need to install a font?": "ፊደል መጫን አለብኝ?",
+  "No. Amharic uses the Ethiopic Unicode block, which modern phones and computers render natively. Type or tap keys here, then copy the text anywhere.": "አያስፈልግም። አማርኛ የግዕዝ ዩኒኮድ ስለሚጠቀም ዘመናዊ ስልኮች እና ኮምፒውተሮች በቀጥታ ያነባሉ። እዚህ ይጻፉ ወይም ቁልፎችን ይንኩ፣ ከዚያ ጽሑፉን ይቅዱ።",
+  "Convert numbers into Amharic words or Ethiopic numerals.": "ቁጥሮችን ወደ አማርኛ ቃላት ወይም ግዕዝ ቁጥሮች ይለውጡ።",
+  "Number (0 – 999,999,999)": "ቁጥር (0 – 999,999,999)",
+  "Convert": "ለውጥ",
+  "About Ethiopic numerals": "ስለ ግዕዝ ቁጥሮች",
+  "How do Ethiopic numerals work?": "የግዕዝ ቁጥሮች እንዴት ይሠራሉ?",
+  "Ethiopic numerals combine units (፩–፱), tens (፲–፺) and hundreds with ፻ (100) and ፼ (10,000) separators — a system related to ancient Greek and Hebrew numbering.": "የግዕዝ ቁጥሮች አሀዞችን (፩–፱)፣ አሥሮችን (፲–፺) እና መቶዎችን በ፻ (100) እና ፼ (10,000) ምልክቶች ያዋህዳሉ።",
+  "Clean, sort, de-duplicate and count Amharic or any Unicode text.": "የአማርኛ ወይም ሌላ ዩኒኮድ ጽሑፍ ያፅዱ፣ ያደራድሩ፣ ተደጋጋሚዎችን ያስወግዱ እና ይቁጠሩ።",
+  "Text": "ጽሑፍ",
+  "Clean spacing": "ክፍተቶችን አፅዳ",
+  "Trim lines": "የመስመር ጫፎችን አጥራ",
+  "Unique lines": "ተደጋጋሚ መስመሮችን አስወግድ",
+  "Sort A–Z": "ከሀ እስከ ሐ አደራድር",
+  "Reverse order": "ቅደም ተከተል ገልብጥ",
+  "Estimate annual leave entitlement from years of service.": "ከአገልግሎት ዓመታትዎ የዓመታዊ ሕግ ፍቃድዎን ይገምቱ።",
+  "Completed years of service": "የተጠናቀቁ የአገልግሎት ዓመታት",
+  "Additional months (0–11)": "ተጨማሪ ወራት (0–11)",
+  "Calculate leave": "ሕግ ፍቃድ አስላ",
+  "Annual leave rules": "የዓመታዊ ሕግ ፍቃድ ደንቦች",
+  "How is entitlement calculated?": "መብት እንዴት ይሰላል?",
+  "Ethiopian employment guidance sets a minimum of 16 working days for the first year of service, increasing by one day for every additional two years of service. Under one year, leave is typically pro-rated by completed months.": "የኢትዮጵያ የሥራ መመሪያ በመጀመሪያው ዓመት ቢያንስ 16 የሥራ ቀኖችን፣ ከዚያም በእያንዳንዱ ተጨማሪ ሁለት ዓመት አንድ ቀን መጨመሩን ይደነግጋል። ከአንድ ዓመት በታች በተጠናቀቁ ወራት መጠን ይሰላል።",
+  "Estimate employment income tax with progressive monthly bands.": "የሥራ ገቢ ታክስን በሚሄዱ የወራት ደረጃዎች ይገምቱ።",
+  "Monthly taxable income (ETB)": "ወራዊ ታክስ የሚከፈልበት ገቢ (ብር)",
+  "Calculate tax": "ታክስ አስላ",
+  "About the tax bands": "ስለ ታክስ ደረጃዎች",
+  "Which bands are used?": "የትኞቹ ደረጃዎች ይጠቀማሉ?",
+  "The calculator applies Ethiopia’s progressive monthly employment income tax bands: 0% up to 2,000 ETB, then 15%, 20%, 25%, 30% and 35% for the highest slice. Pension and other deductions are not included.": "አካውንተሩ የኢትዮጵያን ሚሄዱ የወራዊ ሥራ ገቢ ታክስ ደረጃዎች ይጠቀማል፤ እስከ 2,000 ብር 0%፣ ከዚያ 15%፣ 20%፣ 25%፣ 30% እና 35%። ፔንሽን እና ሌሎች ቅነሳዎች አልተካተቱም።",
+  "Calculate overtime pay at daytime, night, rest-day and holiday rates.": "የቀን፣ የሌሊት፣ የዕረፍት ቀን እና የበዓል ተጨማሪ ሥራ ክፍያ ይቁጠሩ።",
+  "Hourly rate (ETB)": "ሰዓተኛ ተመን (ብር)",
+  "Daytime overtime (hours)": "የቀን ተጨማሪ ሥራ (ሰዓቶች)",
+  "Night overtime (hours)": "የሌሊት ተጨማሪ ሥራ (ሰዓቶች)",
+  "Weekly rest day (hours)": "ሳምንታዊ ዕረፍት (ሰዓቶች)",
+  "Public holiday (hours)": "ሕዝባዊ በዓል (ሰዓቶች)",
+  "Calculate overtime": "ተጨማሪ ክፍያ አስላ",
+  "Overtime multipliers": "የተጨማሪ ሥራባዜዎች",
+  "What are the standard multipliers?": "መደበኛውባዜዎች ምንድን ናቸው?",
+  "Under Ethiopian labour guidance, overtime is typically paid at 1.5× the hourly rate for daytime, 1.75× for night work, 2× on weekly rest days and 2.5× on public holidays. Confirm with your employer or the labour proclamation.": "በኢትዮጵያ የሥራ መመሪያ ተጨማሪ ሥራ በቀን 1.5×፣ በሌሊት 1.75×፣ በሳምንታዊ ዕረፍት 2× እና በሕዝባዊ በዓል 2.5× ይከፈላል። ከአሠሪዎ ወይም ከሥራ አዋጁ ያረጋግጡ።",
+  "Live East Africa Time with the traditional 12-hour reading.": "ቀጥታ የምሥራቅ አፍሪካ ሰዓት ከባሕላዊ 12 ሰዓት ንባብ ጋር።",
+  "Refresh": "አድስ",
+  "Ethiopian time system": "የኢትዮጵያ ሰዓት ሥርዓት",
+  "What is the traditional clock?": "ባሕላዊው ሰዓት ምንድን ነው?",
+  "Ethiopia commonly uses a 12-hour clock counted from dawn (1 o’clock = 7 AM) and dusk (1 o’clock = 7 PM). The modern East Africa Time zone is UTC+3 year-round with no daylight saving.": "ኢትዮጵያ ከጠዋት እከከምሽቱ የሚቆጠር 12 ሰዓት ሥርዓት ትጠቀማለች (1 ሰዓት = 7 AM/PM)። ዘመናዊው የምሥራቅ አፍሪካ ሰዓት UTC+3 ነው፤ የቀን ሰዓት ማዘዋወሪያ የለም።",
+  "Amount": "መጠን",
+  "From": "ከ",
+  "To": "ወደ",
+  "Quick rates": "ፈጣን ተመኖች",
+  "About this tool": "ስለዚህ መሣሪያ",
+  "Popular pairs": "ተወዳጅ ጥንዶች",
+  "Search names": "ስሞችን ፈልግ",
+  "Gender": "ጾታ",
+  "Origin": "ምንጭ",
+  "Load more names": "ተጨማሪ ስሞች ጫን",
+  "About these names": "ስለ እነዚህ ስሞች",
+  "Privacy Policy": "የግላዊነት ፖሊሲ",
+  "No accounts, no tracking, no data collection.": "ምንም መለያ፣ ክትትል ወይም መረጃ ሰብሳቢ የለም።",
+  "Privacy at a glance": "የግላዊነት በአጭሩ",
+  "What we store": "የምንያዘው",
+  "What we do not do": "የማናደርጋቸው",
+  "Contact": "አግኙን",
+  "Terms of Use": "የአጠቃቀም ውሎች",
+  "Free tools, provided as-is without warranty.": "ነጻ መሣሪያዎች፣ ያለ ዋስትና እንዳሉ ይሰጣሉ።",
+  "Acceptance of terms": "ውሎችን መቀበል",
+  "Service description": "የአገልግሎት መግለጫ",
+  "Accuracy & liability": "ትክክለኛነት እና ኃላፊነት",
+  "Acceptable use": "ተቀባይነት ያለው አጠቃቀም",
+  "Changes": "ለውጦች",
+  "What is EthioSync?": "EthioSync ምንድን ነው?",
+  "Free Ethiopian tools, private by design.": "ነጻ የኢትዮጵያ መሣሪያዎች፣ ግላዊነትዎ የተጠበቀ ነው።",
+  "Accuracy & sources": "ትክክለኛነት እና ምንጮች",
+  "Terms of use": "የአጠቃቀም ውሎች",
+  "EthioSync Blog": "EthioSync ብሎግ",
+  "Articles, updates and deep dives on Ethiopian calendar tools, language and culture.": "ስለ ኢትዮጵያ ቀን መቁጠሪያ፣ ቋንቋ እና ባሕል ጽሑፎች እና ዝመናዎች።",
+  "Welcome to the blog": "ወደ ብሎጉ እንኳን ደህና መጡ",
+  "Calendar Explainers": "የቀን መቁጠሪያ ማብራሪያዎች",
+  "Amharic Tips": "የአማርኛ ምክሮች",
+  "Tool Updates": "የመሣሪያ ዝመናዎች",
+  "Holidays & Culture": "በዓላት እና ባሕል",
+  "Coming soon": "በቅርቡ ይመጣል",
+  "Educational games and quizzes about Ethiopian culture, language and history.": "ስለ ኢትዮጵያ ባሕል፣ ቋንቋ እና ታሪክ ትምህርታዊ ጨዋታዎች እና ጥያቄዎች።",
+  "Calendar Quiz": "የቀን መቁጠሪያ ጥያቄዎች",
+  "Amharic Alphabet Match": "የአማርኛ ፊደላት ማመሳሰያ",
+  "Name Meanings": "የስም ትርጉሞች",
+  "Ethiopia Trivia": "የኢትዮጵያ እውቀት ጥያቄዎች",
+  "Curated guides, references and reading lists on Ethiopian culture, language and history.": "ስለ ኢትዮጵያ ባሕል፣ ቋንቋ እና ታሪክ የተመረጡ መመሪያዎች እና ማጣቀሻዎች።",
+  "Calendar & Time": "ቀን መቁጠሪያ እና ሰዓት",
+  "Language Learning": "የቋንቋ ትምህርት",
+  "History & Culture": "ታሪክ እና ባሕል",
+  "Names & Genealogy": "ስሞች እና ዘር ሐረግ"
+});
   var reverse = {};
   Object.keys(ui).forEach(function (key) { reverse[ui[key]] = key; });
 
@@ -150,9 +306,13 @@
     if (el) el.content = value;
   }
   function syncControls(lang) {
-    document.querySelectorAll('.language-select').forEach(function (select) {
-      select.value = lang;
-      select.setAttribute('title', lang === 'am' ? 'ወደ እንግሊዝኛ ይቀይሩ' : 'Switch to Amharic');
+    document.querySelectorAll('.language-toggle').forEach(function (button) {
+      var target = lang === 'am' ? 'en' : 'am';
+      button.textContent = target === 'am' ? 'አማ' : 'EN';
+      button.dataset.targetLanguage = target;
+      button.setAttribute('aria-label', target === 'am' ? 'Switch to Amharic' : 'ወደ እንግሊዝኛ ይቀይሩ');
+      button.setAttribute('title', target === 'am' ? 'Switch to Amharic' : 'ወደ እንግሊዝኛ ይቀይሩ');
+      button.setAttribute('aria-pressed', lang === 'am' ? 'true' : 'false');
     });
   }
   function updateLinks(lang) {
@@ -229,12 +389,24 @@
     }
     document.dispatchEvent(new CustomEvent('ethiosync:languagechange', { detail:{ language:current } }));
   }
+  var observerTimer;
+  function observeDynamicContent(){
+    var observer = new MutationObserver(function(){
+      if(current!=='am') return;
+      clearTimeout(observerTimer);
+      observerTimer=setTimeout(function(){observer.disconnect();translateLocalUI('am');observer.observe(document.body,{childList:true,subtree:true,characterData:true});},80);
+    });
+    observer.observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
   document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.language-select').forEach(function (select) {
-      select.addEventListener('change', function () { setLanguage(select.value, false); });
+    document.querySelectorAll('.language-toggle').forEach(function (button) {
+      button.addEventListener('click', function () {
+        setLanguage(button.dataset.targetLanguage || (current === 'am' ? 'en' : 'am'), false);
+      });
     });
     var brand = document.querySelector('.brand');
     if (brand) brand.classList.add('notranslate');
     setLanguage(preferredLanguage(), true);
+    observeDynamicContent();
   });
 })();

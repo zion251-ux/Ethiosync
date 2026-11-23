@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ethiopian Calendar — 13-Month Calendar View | EthioSync</title>
 <meta name="description" content="View the current Ethiopian month, date and year with the 13-month calendar system explained.">
-<link rel="canonical" href="https://kronos.alc.onl/ethiopian-calendar.html">
+<link rel="canonical" href="https://ethiosync.cyou/ethiopian-calendar.html">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -25,14 +25,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ethiopian Calendar — 13-Month Calendar View | EthioSync">
 <meta property="og:description" content="View the current Ethiopian month, date and year with the 13-month calendar system explained.">
-<meta property="og:url" content="https://kronos.alc.onl/ethiopian-calendar.html">
+<meta property="og:url" content="https://ethiosync.cyou/ethiopian-calendar.html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ethiopian Calendar — 13-Month Calendar View | EthioSync">
 <meta name="twitter:description" content="View the current Ethiopian month, date and year with the 13-month calendar system explained.">
-<link rel="alternate" hreflang="en" href="https://kronos.alc.onl/ethiopian-calendar.html">
-<link rel="alternate" hreflang="am" href="https://kronos.alc.onl/ethiopian-calendar.html?lang=am">
-<link rel="alternate" hreflang="x-default" href="https://kronos.alc.onl/ethiopian-calendar.html">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kronos.alc.onl/#organization","name":"EthioSync","url":"https://kronos.alc.onl/","logo":{"@type":"ImageObject","url":"https://kronos.alc.onl/images/favicon.svg"}},{"@type":"WebPage","@id":"https://kronos.alc.onl/ethiopian-calendar.html#webpage","url":"https://kronos.alc.onl/ethiopian-calendar.html","name":"Ethiopian Calendar — 13-Month Calendar View | EthioSync","description":"View the current Ethiopian month, date and year with the 13-month calendar system explained.","inLanguage":["en","am"],"isPartOf":{"@type":"WebSite","name":"EthioSync","url":"https://kronos.alc.onl/"},"publisher":{"@id":"https://kronos.alc.onl/#organization"}},{"@type":"WebApplication","name":"Ethiopian Calendar","url":"https://kronos.alc.onl/ethiopian-calendar.html","description":"View the current Ethiopian month, date and year with the 13-month calendar system explained.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["en","am"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://kronos.alc.onl/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kronos.alc.onl/"},{"@type":"ListItem","position":2,"name":"Calendar","item":"https://kronos.alc.onl/"},{"@type":"ListItem","position":3,"name":"Ethiopian Calendar"}]}]}</script>
+<link rel="alternate" hreflang="en" href="https://ethiosync.cyou/ethiopian-calendar.html">
+<link rel="alternate" hreflang="am" href="https://ethiosync.cyou/ethiopian-calendar.html?lang=am">
+<link rel="alternate" hreflang="x-default" href="https://ethiosync.cyou/ethiopian-calendar.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://ethiosync.cyou/#organization","name":"EthioSync","url":"https://ethiosync.cyou/","logo":{"@type":"ImageObject","url":"https://ethiosync.cyou/images/favicon.svg"}},{"@type":"WebPage","@id":"https://ethiosync.cyou/ethiopian-calendar.html#webpage","url":"https://ethiosync.cyou/ethiopian-calendar.html","name":"Ethiopian Calendar — 13-Month Calendar View | EthioSync","description":"View the current Ethiopian month, date and year with the 13-month calendar system explained.","inLanguage":["en","am"],"isPartOf":{"@type":"WebSite","name":"EthioSync","url":"https://ethiosync.cyou/"},"publisher":{"@id":"https://ethiosync.cyou/#organization"}},{"@type":"WebApplication","name":"Ethiopian Calendar","url":"https://ethiosync.cyou/ethiopian-calendar.html","description":"View the current Ethiopian month, date and year with the 13-month calendar system explained.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["en","am"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://ethiosync.cyou/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ethiosync.cyou/"},{"@type":"ListItem","position":2,"name":"Calendar","item":"https://ethiosync.cyou/"},{"@type":"ListItem","position":3,"name":"Ethiopian Calendar"}]}]}</script>
 </head>
 <body>
 <div id="language-status" class="visually-hidden" role="status" aria-live="polite"></div>
@@ -57,7 +57,7 @@
       <a href="about.html">About</a>
     </nav>
     <div class="header-actions">
-      <label class="language-control" aria-label="Website language"><span class="sr-only">Language</span><select class="language-select notranslate" aria-label="Select language"><option value="en">EN</option><option value="am">አማርኛ</option></select></label>
+      <button type="button" class="language-select language-toggle notranslate" aria-label="Switch to Amharic" title="Switch to Amharic">አማ</button>
       <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
       <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
     </div>
@@ -219,7 +219,9 @@ function draw(){
  current={year:yy,month:mm,day:1};
  var days=etEthMonthDays(yy,mm),startJ=etEthToJdn(yy,mm,1),start=etJdnToGreg(startJ),weekday=(new Date(Date.UTC(start.year,start.month-1,start.day)).getUTCDay()+6)%7;
  var today=etJdnToEth(etGregToJdn(etEatToday().year,etEatToday().month,etEatToday().day));
- var h='<h2 style="margin-top:0">'+ET_MONTHS[mm-1][0]+' '+yy+' · '+ET_MONTHS[mm-1][1]+'</h2><table class="et-cal"><thead><tr>'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(function(x){return '<th>'+x+'</th>';}).join('')+'</tr></thead><tbody><tr>';
+ var isAm=document.documentElement.lang==='am',weekdays=isAm?['ሰኞ','ማክሰ','ረቡዕ','ሐሙስ','ዓርብ','ቅዳሜ','እሑድ']:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+ var monthTitle=isAm?ET_MONTHS[mm-1][1]+' '+yy:ET_MONTHS[mm-1][0]+' '+yy+' · '+ET_MONTHS[mm-1][1];
+ var h='<h2 style="margin-top:0">'+monthTitle+'</h2><table class="et-cal"><caption class="visually-hidden">'+monthTitle+'</caption><thead><tr>'+weekdays.map(function(x){return '<th scope="col">'+x+'</th>';}).join('')+'</tr></thead><tbody><tr>';
  for(var i=0;i<weekday;i++){h+='<td class="other"></td>';}
  for(var d=1;d<=days;d++){
   if((weekday+d-1)%7===0&&d>1){h+='</tr><tr>';}
@@ -241,6 +243,7 @@ document.getElementById('ec-show').onclick=draw;
 document.getElementById('ec-prev').onclick=function(){current.month--;if(current.month<1){current.month=13;current.year--;}sync();};
 document.getElementById('ec-next').onclick=function(){current.month++;if(current.month>13){current.month=1;current.year++;}sync();};
 document.getElementById('ec-today').onclick=function(){current=etJdnToEth(etGregToJdn(etEatToday().year,etEatToday().month,etEatToday().day));sync();};
+document.addEventListener('ethiosync:languagechange',function(){draw();document.getElementById('ec-selected').textContent=document.documentElement.lang==='am'?'ሙሉ የኢትዮጵያ እና የግሪጎሪያን ቀኖችን ለማየት ቀን ይምረጡ።':'Select a day for its full Ethiopian and Gregorian dates.';});
 sync();
 })();
 </script>

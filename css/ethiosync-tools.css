@@ -9,7 +9,8 @@
 .kb-grid button:active{ transform:translateY(0); }
 html[data-theme="dark"] .kb-grid button:hover{ color:#c7c3ff; }
 
-.et-cal{ width:100%; border-collapse:collapse; margin-top:6px; }
+.et-cal{ width:100%; table-layout:fixed; border-collapse:collapse; margin-top:6px; }
+.et-cal th,.et-cal td{width:14.2857%;min-width:0;}
 .et-cal th{ font-family:var(--font-display); font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; color:var(--text-dim); padding:8px 4px; border-bottom:1px solid var(--border); }
 .et-cal td{ text-align:center; padding:6px 4px; border-bottom:1px solid var(--border); vertical-align:top; }
 .et-cal td.other{ border:none; }
@@ -26,4 +27,17 @@ html[data-theme="dark"] .kb-grid button:hover{ color:#c7c3ff; }
 .result-box{ background:var(--paper-dim); border:1px solid var(--border); border-radius:var(--radius-md); padding:16px 18px; margin-top:16px; line-height:1.7; }
 html[data-theme="dark"] .result-box{ background:var(--ink-800); }
 .result-box:empty{ display:none; }
+
+@media (max-width:520px){
+  .et-cal th{font-size:.62rem;letter-spacing:0;padding:8px 0;}
+  .et-cal td{padding:5px 0;}
+  .et-cal .day-btn{width:100%;max-width:40px;height:38px;padding:0;border-radius:8px;font-size:.9rem;}
+  .et-cal .greg-sub{font-size:.6rem;letter-spacing:-.02em;}
+  #ec-output{max-width:100%;overflow:hidden;}
+}
+@media (max-width:350px){
+  .et-cal th{font-size:.56rem;}
+  .et-cal .day-btn{height:34px;font-size:.82rem;}
+  .et-cal .greg-sub{font-size:.55rem;}
+}
 
