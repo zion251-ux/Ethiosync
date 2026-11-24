@@ -1,0 +1,36 @@
+# Local credentials and secrets — never commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.secrets/
+
+# Dependencies and generated builds
+node_modules/
+dist/
+build/
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Local editor settings
+.vscode/
+.idea/
+
+# Local test and coverage output
+coverage/
+.playwright/
+test-results/
+playwright-report/
+
+# IMPORTANT: Do not ignore CNAME, robots.txt, sitemap.xml, or .nojekyll.
+# They are deployment files and must remain tracked when present.

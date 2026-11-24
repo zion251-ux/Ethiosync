@@ -190,7 +190,16 @@
   "Calendar & Time": "ቀን መቁጠሪያ እና ሰዓት",
   "Language Learning": "የቋንቋ ትምህርት",
   "History & Culture": "ታሪክ እና ባሕል",
-  "Names & Genealogy": "ስሞች እና ዘር ሐረግ"
+  "Names & Genealogy": "ስሞች እና ዘር ሐረግ",
+  "Sources, effective date & review": "ምንጮች፣ የትግበራ ቀን እና ግምገማ",
+  "Current bands reflect Ethiopia’s Income Tax (Amendment) Proclamation No. 1395/2025.": "የአሁኑ ደረጃዎች የኢትዮጵያን የገቢ ታክስ (ማሻሻያ) አዋጅ ቁጥር 1395/2025 ይከተላሉ።",
+  "Proclamation overview": "የአዋጁ አጠቃላይ መግለጫ",
+  "PwC Ethiopia tax summary": "የPwC የኢትዮጵያ ታክስ ማጠቃለያ",
+  "Last reviewed 24 November 2026. Confirm current payroll treatment with a qualified Ethiopian tax professional.": "መጨረሻ የተገመገመው ህዳር 15 ቀን 2019 ዓ.ም. ነው። የአሁኑን የደመወዝ አያያዝ ከባለሙያ የኢትዮጵያ ታክስ አማካሪ ያረጋግጡ።",
+  "Multipliers follow Article 68 of Ethiopia’s Labour Proclamation No. 1156/2019.": "ሥራባዜዎቹ የኢትዮጵያን የሥራ አዋጅ ቁጥር 1156/2019 አንቀጽ 68 ይከተላሉ።",
+  "Entitlement follows Article 77 of Ethiopia’s Labour Proclamation No. 1156/2019.": "መብቱ የኢትዮጵያን የሥራ አዋጅ ቁጥር 1156/2019 አንቀጽ 77 ይከተላል።",
+  "Read the Labour Proclamation": "የሥራ አዋጁን ያንብቡ",
+  "Last reviewed 24 November 2026. Employment contracts, collective agreements and later amendments may affect entitlement.": "መጨረሻ የተገመገመው ህዳር 15 ቀን 2019 ዓ.ም. ነው። የሥራ ውሎች፣ የጋራ ስምምነቶች እና የኋላ ማሻሻያዎች መብት ላይ ተጽዕኖ ሊያሳድሩ ይችላሉ።"
 });
   var reverse = {};
   Object.keys(ui).forEach(function (key) { reverse[ui[key]] = key; });
