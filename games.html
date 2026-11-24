@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/tool.css">
+<link rel="stylesheet" href="css/discovery.css">
 <link rel="stylesheet" href="css/ethiosync-tools.css">
 
 <meta name="ethiosync-title-en" content="Games — Ethiopian &amp; Amharic Games | EthioSync">
@@ -97,41 +98,20 @@
         <span class="tool-title-icon"><i class="fa-solid fa-gamepad"></i></span>
         <div>
           <h1>Games</h1>
-          <p>Educational games and quizzes about Ethiopian culture, language and history.</p>
+          <p data-en="Play offline Amharic letter matching, Ethiopian calendar quizzes, and a thirteen-month ordering challenge." data-am="የአማርኛ ፊደል ማመሳሰያን፣ የኢትዮጵያ ቀን መቁጠሪያ ጥያቄዎችን እና የአሥራ ሦስት ወራት ቅደም ተከተል ጨዋታን ከመስመር ውጪ ይጫወቱ።">Play offline Amharic letter matching, Ethiopian calendar quizzes, and a thirteen-month ordering challenge.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<main class="container" style="padding:48px 24px 72px;max-width:960px;">
-  <div class="panel">
-    <h2 style="margin-top:0;"><i class="fa-solid fa-rocket" style="color:var(--brand);"></i> Coming soon</h2>
-    <p>The games section is under construction. In the next phase we will add interactive quizzes, matching games and puzzles to help you learn the Ethiopian calendar, Amharic script and biblical names.</p>
-  </div>
-
-  <div class="features-grid" style="margin-top:32px;">
-    <div class="feature-card">
-      <span class="fico"><i class="fa-solid fa-calendar-check"></i></span>
-      <h3>Calendar Quiz</h3>
-      <p>Test your knowledge of Ethiopian months, holidays and date conversions.</p>
-    </div>
-    <div class="feature-card">
-      <span class="fico"><i class="fa-solid fa-font"></i></span>
-      <h3>Amharic Alphabet Match</h3>
-      <p>Match Amharic letters and sounds in a quick memory-style game.</p>
-    </div>
-    <div class="feature-card">
-      <span class="fico"><i class="fa-solid fa-baby"></i></span>
-      <h3>Name Meanings</h3>
-      <p>Guess the meaning or origin of Ethiopian and biblical names.</p>
-    </div>
-    <div class="feature-card">
-      <span class="fico"><i class="fa-solid fa-map"></i></span>
-      <h3>Ethiopia Trivia</h3>
-      <p>History, geography and culture trivia for all skill levels.</p>
-    </div>
-  </div>
+<main class="container discovery-main">
+  <div class="discovery-intro"><div><h2 data-en="Learn by playing — entirely offline" data-am="በመጫወት ይማሩ — ሙሉ በሙሉ ከመስመር ውጪ">Learn by playing — entirely offline</h2><p data-en="Three short games, local best scores, no account and no network requests." data-am="ሦስት አጫጭር ጨዋታዎች፣ የአካባቢ ምርጥ ውጤቶች፤ መለያ ወይም በመስመር ላይ ግንኙነት አያስፈልግም።">Three short games, local best scores, no account and no network requests.</p></div><button class="btn btn-ghost btn-sm" id="game-sound" aria-pressed="true"><i class="fa-solid fa-volume-high"></i> <span data-en="Sound on" data-am="ድምፅ በርቷል">Sound on</span></button></div>
+  <div class="game-tabs" role="tablist" aria-label="Educational games"><button class="game-tab" role="tab" id="tab-memory" aria-controls="game-memory" aria-selected="true" data-game="memory"><i class="fa-solid fa-font"></i><span data-en="Fidel Match" data-am="የፊደል ማመሳሰያ">Fidel Match</span></button><button class="game-tab" role="tab" id="tab-quiz" aria-controls="game-quiz" aria-selected="false" data-game="quiz"><i class="fa-solid fa-circle-question"></i><span data-en="Calendar Quiz" data-am="የቀን መቁጠሪያ ጥያቄ">Calendar Quiz</span></button><button class="game-tab" role="tab" id="tab-months" aria-controls="game-months" aria-selected="false" data-game="months"><i class="fa-solid fa-arrow-down-1-9"></i><span data-en="Month Order" data-am="የወራት ቅደም ተከተል">Month Order</span></button></div>
+  <section class="panel game-shell" id="game-memory" role="tabpanel" aria-labelledby="tab-memory"><div class="game-topbar"><div><h2 data-en="Fidel Match" data-am="የፊደል ማመሳሰያ">Fidel Match</h2><p data-en="Pair each Amharic letter with its transliterated sound." data-am="እያንዳንዱን የአማርኛ ፊደል ከድምፁ ጋር ያመሳስሉ።">Pair each Amharic letter with its transliterated sound.</p></div><button class="btn btn-soft btn-sm" id="memory-pause" data-en="Pause" data-am="አቁም">Pause</button></div><div class="game-stats"><div class="game-stat"><strong id="memory-moves">0</strong><span data-en="Moves" data-am="እንቅስቃሴዎች">Moves</span></div><div class="game-stat"><strong id="memory-pairs">0/6</strong><span data-en="Pairs" data-am="ጥንዶች">Pairs</span></div><div class="game-stat"><strong id="memory-best">—</strong><span data-en="Best moves" data-am="ምርጥ እንቅስቃሴ">Best moves</span></div></div><div class="game-stage" id="memory-stage"><div class="game-start" id="memory-start"><span class="game-symbol"><i class="fa-solid fa-language"></i></span><h3 data-en="Match six pairs" data-am="ስድስት ጥንዶችን ያመሳስሉ">Match six pairs</h3><p data-en="Turn over two cards at a time. Matched pairs stay open; finish in as few moves as possible." data-am="በአንድ ጊዜ ሁለት ካርዶችን ይገልብጡ። የተመሳሰሉ ጥንዶች ክፍት ይቆያሉ።">Turn over two cards at a time. Matched pairs stay open; finish in as few moves as possible.</p><button class="btn btn-primary" id="memory-begin" data-en="Start matching" data-am="ማመሳሰል ጀምር">Start matching</button></div><div class="memory-grid" id="memory-grid" hidden></div></div><p class="game-message" id="memory-message" role="status"></p></section>
+  <section class="panel game-shell" id="game-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden><div class="game-topbar"><div><h2 data-en="Calendar Quiz" data-am="የቀን መቁጠሪያ ጥያቄ">Calendar Quiz</h2><p data-en="Eight questions about months, leap years and holidays." data-am="ስለ ወራት፣ ሌፕ ዓመታት እና በዓላት ስምንት ጥያቄዎች።">Eight questions about months, leap years and holidays.</p></div><button class="btn btn-soft btn-sm" id="quiz-pause" data-en="Pause" data-am="አቁም">Pause</button></div><div class="game-stats"><div class="game-stat"><strong id="quiz-score">0</strong><span data-en="Score" data-am="ውጤት">Score</span></div><div class="game-stat"><strong id="quiz-count">0/8</strong><span data-en="Question" data-am="ጥያቄ">Question</span></div><div class="game-stat"><strong id="quiz-best">—</strong><span data-en="Best score" data-am="ምርጥ ውጤት">Best score</span></div></div><div class="game-stage" id="quiz-stage"><div class="game-start" id="quiz-start"><span class="game-symbol"><i class="fa-solid fa-calendar-check"></i></span><h3 data-en="Test your calendar knowledge" data-am="የቀን መቁጠሪያ እውቀትዎን ይሞክሩ">Test your calendar knowledge</h3><p data-en="Choose one answer per question. Immediate feedback explains the correct answer." data-am="ለእያንዳንዱ ጥያቄ አንድ መልስ ይምረጡ። ወዲያውኑ ማብራሪያ ያገኛሉ።">Choose one answer per question. Immediate feedback explains the correct answer.</p><button class="btn btn-primary" id="quiz-begin" data-en="Start quiz" data-am="ጥያቄ ጀምር">Start quiz</button></div><div class="quiz-wrap" id="quiz-wrap" hidden></div></div><p class="game-message" id="quiz-message" role="status"></p></section>
+  <section class="panel game-shell" id="game-months" role="tabpanel" aria-labelledby="tab-months" hidden><div class="game-topbar"><div><h2 data-en="Month Order" data-am="የወራት ቅደም ተከተል">Month Order</h2><p data-en="Rebuild the Ethiopian year from Meskerem to Pagume." data-am="ከመስከረም እስከ ጳጉሜ የኢትዮጵያውን ዓመት ያዋህዱ።">Rebuild the Ethiopian year from Meskerem to Pagume.</p></div><button class="btn btn-soft btn-sm" id="months-pause" data-en="Pause" data-am="አቁም">Pause</button></div><div class="game-stats"><div class="game-stat"><strong id="months-placed">0/13</strong><span data-en="Placed" data-am="የተቀመጡ">Placed</span></div><div class="game-stat"><strong id="months-mistakes">0</strong><span data-en="Mistakes" data-am="ስህተቶች">Mistakes</span></div><div class="game-stat"><strong id="months-best">—</strong><span data-en="Fewest mistakes" data-am="ዝቅተኛ ስህተት">Fewest mistakes</span></div></div><div class="game-stage" id="months-stage"><div class="game-start" id="months-start"><span class="game-symbol"><i class="fa-solid fa-list-ol"></i></span><h3 data-en="Put all thirteen months in order" data-am="አሥራ ሦስቱን ወራት በቅደም ተከተል ያደራድሩ">Put all thirteen months in order</h3><p data-en="Select the next month from the shuffled pool. A correct choice moves into your sequence." data-am="ቀጣዩን ወር ከደረበው ዝርዝር ይምረጡ። ትክክለኛ ምርጫ ወደ ቅደም ተከተልዎ ይገባል።">Select the next month from the shuffled pool. A correct choice moves into your sequence.</p><button class="btn btn-primary" id="months-begin" data-en="Start ordering" data-am="ማደራደር ጀምር">Start ordering</button></div><div class="quiz-wrap" id="months-wrap" hidden><p class="game-message" id="months-next"></p><div class="month-pool" id="month-pool"></div><div class="month-sequence" id="month-sequence"></div></div></div><p class="game-message" id="months-message" role="status"></p></section>
+  <p class="game-footnote" data-en="Best scores stay only in this browser. Clearing site data resets them; scores do not sync across devices." data-am="ምርጥ ውጤቶች በዚህ አሳሽ ብቻ ይቆያሉ። የጣቢያ መረጃ ሲጠራ ይጠፋሉ፤ በመሣሪያዎች መካከል አይተካካሉም።">Best scores stay only in this browser. Clearing site data resets them; scores do not sync across devices.</p>
 </main>
 
 <footer class="site-footer">
@@ -199,5 +179,6 @@
 
 <script src="js/main.js"></script>
 <script src="js/language.js"></script>
+<script src="js/games.js"></script>
 </body>
 </html>
