@@ -1,10 +1,9 @@
-/* EthioSync bilingual interface — instant local UI + full-page Amharic translation. */
+/* EthioSync bilingual interface — deterministic, offline English and Amharic. */
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'ethiosync-language';
   var current = 'en';
-  var translating = false;
   var ui = {
     'Home':'ዋና ገጽ','All Tools':'ሁሉም መሣሪያዎች','Calendar Tools':'የቀን መቁጠሪያ መሣሪያዎች',
     'Amharic & Language':'አማርኛ እና ቋንቋ','Finance & Work':'ፋይናንስ እና ሥራ','Reference':'ማጣቀሻ',
@@ -17,24 +16,24 @@
     'Ethiopian Date Converter':'የኢትዮጵያ ቀን መለወጫ','Ethiopian Age Calculator':'የኢትዮጵያ ዕድሜ አካውንተር',
     'Holidays & Fasting':'በዓላት እና ጾሞች','Overtime Calculator':'የተጨማሪ ሰዓት ክፍያ አካውንተር',
     'Currency Converter':'የምንዛሬ መለወጫ','Time in Ethiopia':'በኢትዮጵያ ያለ ሰዓት','Related tools':'ተዛማጅ መሣሪያዎች',
-    'Open tool':'መሣሪያውን ክፈት','Search':'ፈልግ','All rights reserved.':'መብቱ በሕግ የተጠበቀ ነው።',
+    'Open tool':'መሣሪያውን ክፈት','Search':'ፈልግ','All rights reserved.':'መብቱ በሕግ የተጠበቀ ነው።','EthioSync. All rights reserved.':'EthioSync። መብቱ በሕግ የተጠበቀ ነው።',
     'Ethiopia':'ኢትዮጵያ','100% client-side processing':'100% በድረ-ገጹ ውስጥ ሂደት',
     'Every Ethiopian date, tool':'እያንዳንዱ የኢትዮጵያ ቀን፣ መሣሪያ','& resource.':'እና ግብዓት።',
     'EthioSync brings the Ethiopian calendar, Amharic utilities, local calculators and cultural references together in one fast, clutter-free toolbox — no installs, no sign-up, no data leaving your device.':'EthioSync የኢትዮጵያ ቀን መቁጠሪያን፣ የአማርኛ መሣሪያዎችን፣ አካውንተሮችን እና የባሕል መመሪያዎችን በአንድ ፈጣን ጣቢያ ያዋህዳል — ማስገቢያ፣ ምዝገባ ወይም መረጃ ከመሣሪያዎ መላክ አያስፈልግም።',
     'Browse the toolbox':'መሣሪያዎችን ያስሱ','Pick a category or search above — every tool opens in one click, works instantly, and never uploads your data to a server.':'ምድብ ይምረጡ ወይም ከላይ ይፈልጉ — እያንዳንዱ መሣሪያ በአንድ ጠቅታ ይከፈታል፣ መረጃዎም ወደ ሰርቨር አይላክም።',
-    'Why EthioSync':'ለምን EthioSync','Built for everyday Ethiopian calculations':'ለዕለት ተዕለት የኢትዮጵያ ስሌቶች የተዘጋጀ',
+    'Why EthioSync':'ለምን EthioSync','Built for everyday Ethiopian calculations':'ለዕለት ተግባራዊ የኢትዮጵያ ስሌቶች የተዘጋጀ',
     'Every tool runs entirely in your browser — your dates, names and numbers never leave your device.':'እያንዳንዱ መሣሪያ ሙሉ በሙሉ በድረ-ገጹ ውስጥ ይሠራል — ቀኖችዎ፣ ስሞችዎ እና ቁጥሮችዎ ከመሣሪያዎ አይወጡም።',
     'Calendar-first tools':'በቀን መቁጠሪያ ላይ ያተኮሩ መሣሪያዎች','Date conversion, age calculation and holiday tracking built around the 13-month Ethiopian calendar.':'በ13 ወራት የኢትዮጵያ ቀን መቁጠሪያ ላይ የተመሠረተ የቀን መለወጫ፣ የዕድሜ ስሌት እና የበዓል ክትትል።',
     'Amharic utilities':'የአማርኛ መሣሪያዎች','Type, convert and clean Amharic text and numbers from any device — no font installs needed.':'ከማንኛውም መሣሪያ አማርኛ ጽሑፍ እና ቁጥሮችን ይጻፉ፣ ይለውጡ እና ያፅዱ — ፊደል መጫን አያስፈልግም።',
     'Work & finance':'ሥራ እና ፋይናንስ','Income tax, overtime and annual leave calculators aligned with Ethiopian employment guidance.':'ከኢትዮጵያ የሥራ መመሪያ ጋር የተጣጣሙ የገቢ ታክስ፣ ተጨማሪ ሰዓት እና ዓመታዊ ሕግ ፍቃድ አካውንተሮች።',
     'Private by design':'ግላዊነትዎ የተጠበቀ ነው','100% client-side processing. No accounts, no tracking of your inputs, no server uploads.':'100% ሂደት በድረ-ገጹ ውስጥ ይከናወናል። መለያ አያስፈልግም፣ የሚያስገቡት መረጃ አይከታተልም፣ ወደ ሰርቨርም አይላክም።',
-    'Bookmark EthioSync for your daily workflow':'EthioSyncን ለዕለት ተዕለት ሥራዎ ይምዘግቡ','13+ tools across calendar, Amharic, finance and reference categories — all in one fast, ad-light hub.':'13+ የቀን መቁጠሪያ፣ አማርኛ፣ ፋይናንስ እና ማጣቀሻ መሣሪያዎች — ሁሉም በአንድ ፈጣን ጣቢያ።',
+    'Bookmark EthioSync for your daily workflow':'EthioSyncን ለዕለት ተግባራዊ ሥራዎ ይምዘግቡ','13+ tools across calendar, Amharic, finance and reference categories — all in one fast, ad-light hub.':'13+ የቀን መቁጠሪያ፣ አማርኛ፣ ፋይናንስ እና ማጣቀሻ መሣሪያዎች — ሁሉም በአንድ ፈጣን ጣቢያ።',
     'Explore All Tools':'ሁሉንም መሣሪያዎች ያስሱ','No tools found':'ምንም መሣሪያ አልተገኘም','Try a different keyword or category.':'ሌላ ቃል ወይም ምድብ ይሞክሩ።',
     'Sign-ups Required':'ምዝገባ የሚያስፈልግ','Client-Side & Private':'በድረ-ገጹ እና የግል','Ads Interrupting':'እንቅፋት የሚያደርጉ ማስታወቂያዎች',
     'Convert to Gregorian':'ወደ ግሪጎሪያን ይለውጡ','Convert to Ethiopian':'ወደ ኢትዮጵያ ይለውጡ','Year (EC)':'ዓመት (ዓ.ኢ.)','Month':'ወር','Day':'ቀን','Gregorian date':'የግሪጎሪያን ቀን',
     'Ethiopian to Gregorian':'ከኢትዮጵያ ወደ ግሪጎሪያን','Gregorian to Ethiopian':'ከግሪጎሪያን ወደ ኢትዮጵያ','Convert dates between the Ethiopian and Gregorian calendars.':'ቀኖችን በኢትዮጵያ እና በግሪጎሪያን ቀን መቁጠሪያዎች መካከል ይለውጡ','Conversion notes':'ስለ መለወጫ ማስታወሻዎች','Calculate':'አስላ','Clear':'አፅዳ','Copy':'ቅዳ','Download':'አውርድ','Result':'ውጤት',
     'Search tools':'መሣሪያዎችን ፈልግ',
-    'Practical Ethiopian calendar tools, Amharic resources, calculators and clear cultural guides for everyday use.':'ለዕለት ተዕለት አገልግሎት ተግባራዊ የኢትዮጵያ ቀን መቁጠሪያ መሣሪያዎች፣ የአማርኛ ግብዓቶች፣ አካውንተሮች እና ግልጽ የባሕል መመሪያዎች።'
+    'Practical Ethiopian calendar tools, Amharic resources, calculators and clear cultural guides for everyday use.':'ለዕለት ተግባራዊ አገልግሎት ተግባራዊ የኢትዮጵያ ቀን መቁጠሪያ መሣሪያዎች፣ የአማርኛ ግብዓቶች፣ አካውንተሮች እና ግልጽ የባሕል መመሪያዎች።'
   };
 
   Object.assign(ui, {
@@ -47,7 +46,7 @@
   "Ethiopian Baby Names": "የኢትዮጵያ የሕፃናት ስሞች",
   "Ethiopian & Biblical Baby Names": "የኢትዮጵያ እና የመጽሐፍ ቅዱስ የሕፃናት ስሞች",
   "View the current Ethiopian month, date and year, with the 13-month system explained.": "የአሁኑን የኢትዮጵያ ወር፣ ቀን እና ዓመት ከ13 ወራት ሥርዓቱ ማብራሪያ ጋር ይመልከቱ።",
-  "Convert dates between the Ethiopian and Gregorian calendar systems instantly.": "ቀኖችን በኢትዮጵያ እና በግሪጎሪያን ቀን መቁጠሪያ መካከል ወዲያውኑ ይለውጡ።",
+  "Convert dates between the Ethiopian and Gregorian calendar systems instantly.": "ቀኖችን በኢትዮጵያ እና በግሪጎሪያን ቀን መቁጠሪያዎች መካከል ወዲያውኑ ይለውጡ።",
   "Calculate an exact age from an Ethiopian birth date, or convert it to Gregorian.": "ከኢትዮጵያ የትውልድ ቀን ትክክለኛ ዕድሜ ይቁጠሩ ወይም ወደ ግሪጎሪያን ይለውጡ።",
   "Keep track of public holidays, religious observances and major fasting periods.": "ሕዝባዊ በዓላትን፣ ሃይማኖታዊ በዓላትን እና ዋና ጾሞችን ይከታተሉ።",
   "Type Amharic text from any desktop or mobile device with a simple online keyboard.": "በቀላል የመስመር ላይ ኪቦርድ ከኮምፒውተር ወይም ከስልክ አማርኛ ይጻፉ።",
@@ -56,7 +55,7 @@
   "Estimate Ethiopian employment income tax and understand common payroll deductions.": "የኢትዮጵያ የሥራ ገቢ ታክስ ይገምቱ እና የደመወዝ ቅነሳዎችን ይረዱ።",
   "Calculate overtime compensation using hourly rate and overtime hours worked.": "በሰዓተኛ ተመን እና በተሠሩ ተጨማሪ ሰዓቶች ክፍያ ይቁጠሩ።",
   "Convert between 200+ world currencies using live exchange rates from the free Frankfurter API.": "ከ200 በላይ የዓለም ምንዛሬዎችን በወቅታዊ ተመኖች ይለውጡ።",
-  "Estimate annual leave entitlement based on Ethiopian employment guidance.": "በኢትዮጵያ የሥራ መመሪያ መሠረት የዓመታዊ ሕግ ፍቃድ ይገምቱ።",
+  "Estimate annual leave entitlement based on Ethiopian employment guidance.": "የኢትዮጵያ የሥራ መመሪያ መሠረት የዓመታዊ ሕግ ፍቃድዎን ይገምቱ።",
   "Check East Africa Time and learn how Ethiopia’s traditional time system works.": "የምሥራቅ አፍሪካ ሰዓት ይመልከቱ እና ባሕላዊውን የኢትዮጵያ ሰዓት ሥርዓት ይረዱ።",
   "Explore meaningful Ethiopian and Amharic names with origins and descriptions.": "ትርጉም፣ ምንጭ እና ማብራሪያ ካላቸው የኢትዮጵያ እና የአማርኛ ስሞች ጋር ይተዋወቁ።",
   "View any Ethiopian month with Gregorian dates alongside.": "ማንኛውንም የኢትዮጵያ ወር ከግሪጎሪያን ቀኖች ጋር ይመልከቱ።",
@@ -122,7 +121,7 @@
   "Additional months (0–11)": "ተጨማሪ ወራት (0–11)",
   "Calculate leave": "ሕግ ፍቃድ አስላ",
   "Annual leave rules": "የዓመታዊ ሕግ ፍቃድ ደንቦች",
-  "How is entitlement calculated?": "መብት እንዴት ይሰላል?",
+  "How is entitlement calculated?": "መብት እንዴት እንደሚሰላል?",
   "Ethiopian employment guidance sets a minimum of 16 working days for the first year of service, increasing by one day for every additional two years of service. Under one year, leave is typically pro-rated by completed months.": "የኢትዮጵያ የሥራ መመሪያ በመጀመሪያው ዓመት ቢያንስ 16 የሥራ ቀኖችን፣ ከዚያም በእያንዳንዱ ተጨማሪ ሁለት ዓመት አንድ ቀን መጨመሩን ይደነግጋል። ከአንድ ዓመት በታች በተጠናቀቁ ወራት መጠን ይሰላል።",
   "Estimate employment income tax with progressive monthly bands.": "የሥራ ገቢ ታክስን በሚሄዱ የወራት ደረጃዎች ይገምቱ።",
   "Monthly taxable income (ETB)": "ወራዊ ታክስ የሚከፈልበት ገቢ (ብር)",
@@ -207,15 +206,15 @@
   var meta = {
     'index.html': ['EthioSync — የኢትዮጵያ ቀን መቁጠሪያ፣ የአማርኛ መሣሪያዎች እና ነጻ አካውንተሮች','የኢትዮጵያ ቀን መቁጠሪያ፣ የቀን መለወጫ፣ የአማርኛ ኪቦርድ፣ የገቢ ታክስ እና ሌሎች ነጻ መሣሪያዎች።'],
     'ethiopian-calendar.html': ['የኢትዮጵያ ቀን መቁጠሪያ | EthioSync','የዛሬውን የኢትዮጵያ ቀን፣ ወር እና አመት በ13 ወራት የቀን መቁጠሪያ ሥርዓት ይመልከቱ።'],
-    'ethiopian-date-converter.html': ['የኢትዮጵያ ቀን መለወጫ | EthioSync','ቀኖችን በኢትዮጵያ እና በግሪጎሪያን ቀን መቁጠሪያ መካከል በፍጥነት ይለውጡ።'],
+    'ethiopian-date-converter.html': ['የኢትዮጵያ ቀን መለወጫ | EthioSync','ቀኖችን በኢትዮጵያ እና በግሪጎሪያን ቀን መቁጠሪያዎች መካከል በፍጥነት ይለውጡ።'],
     'ethiopian-age-calculator.html': ['የኢትዮጵያ ዕድሜ አካውንተር | EthioSync','ከየኢትዮጵያ የትውልድ ቀን ትክክለኛ ዕድሜዎን ይቁጠሩ።'],
-    'ethiopian-holidays.html': ['የኢትዮጵያ በዓላት እና ጾሞች | EthioSync','የኢትዮጵያ ሕዝባዊ በዓላት፣ ሃይማኖታዊ በዓላት እና ዋና ጾሞች።'],
+    'ethiopian-holidays.html': ['የኢትዮጵያ በዓላት እና ጾሞች | EthioSync','የኢትዮጵያ ሕዝባዊ በዓላት፣ የጾም ወቅቶች፣ ቀጥታ ቆጠራ፣ ማጣሪያ እና የቀን ማውረጃዎች።'],
     'amharic-keyboard.html': ['የአማርኛ ኪቦርድ | EthioSync','በኮምፒውተር ወይም በስልክ ላይ በቀላሉ አማርኛ ይጻፉ።'],
     'amharic-numbers.html': ['የአማርኛ ቁጥሮች መለወጫ | EthioSync','ቁጥሮችን ወደ አማርኛ ቃላት ወይም ግዕዝ ቁጥሮች ይለውጡ።'],
     'amharic-text-tools.html': ['የአማርኛ ጽሑፍ መሣሪያዎች | EthioSync','የአማርኛ ጽሑፍ ማደራጃ፣ ማጽጃ እና የቋንቋ መሣሪያዎች።'],
     'ethiopia-income-tax-calculator.html': ['የኢትዮጵያ የገቢ ታክስ አካውንተር | EthioSync','የሥራ ገቢ ታክስ እና የደመወዝ ቅነሳዎችን ይገምቱ።'],
     'ethiopia-overtime-calculator.html': ['የተጨማሪ ሰዓት ክፍያ አካውንተር | EthioSync','በሰዓተኛ ተመን እና በተሠራ ተጨማሪ ሰዓት ክፍያዎን ይቁጠሩ።'],
-    'ethiopia-annual-leave-calculator.html': ['የዓመታዊ ሕግ ፍቃድ አካውንተር | EthioSync','በኢትዮጵያ የሥራ መመሪያ መሠረት የዓመታዊ ሕግ ፍቃድዎን ይገምቱ።'],
+    'ethiopia-annual-leave-calculator.html': ['የዓመታዊ ሕግ ፍቃድ አካውንተር | EthioSync','የኢትዮጵያ የሥራ መመሪያ መሠረት የዓመታዊ ሕግ ፍቃድዎን ይገምቱ።'],
     'currency-converter.html': ['የምንዛሬ መለወጫ | EthioSync','በዓለም ላይ በሚገኙ ምንዛሬዎች መካከል በወቅታዊ ተመኖች ይለውጡ።'],
     'time-in-ethiopia.html': ['በኢትዮጵያ ያለ ሰዓት | EthioSync','የምሥራቅ አፍሪካ ሰዓት እና ባሕላዊውን የኢትዮጵያ ሰዓት ሥርዓት ይመልከቱ።'],
     'ethiopian-baby-names.html': ['የኢትዮጵያ የሕፃናት ስሞች | EthioSync','ትርጉም ያላቸውን የኢትዮጵያ እና የአማርኛ ስሞች ያስሱ።'],
@@ -227,22 +226,28 @@
     'terms.html': ['የአጠቃቀም ውሎች | EthioSync','የEthioSync ድረ-ገጽ እና መሣሪያዎች የአጠቃቀም ውሎች።']
   };
 
+  Object.assign(ui, {
+    'East Africa Time · Addis Ababa':'የምሥራቅ አፍሪካ ሰዓት · አዲስ አበባ','Next observance':'ቀጣይ በዓል','Countdown':'የቀረበበት ጊዜ','Days':'ቀናት','Hours':'ሰዓቶች','Minutes':'ደቂቃዎች','Seconds':'ሰከንዶች',
+    'Year planner':'ዓመታዊ እቅድ','Holidays, feasts and fasting periods':'በዓላት፣ በዓላተ ሃይማኖት እና የጾም ወቅቶች','Add to calendar':'ወደ ቀን መቁጠሪያ ጨምር','Previous':'ቀዳሚ','Current year':'የአሁኑ ዓመት','Next':'ቀጣይ',
+    'Search holidays and fasting periods':'በዓላት እና የጾም ወቅቶችን ፈልግ','Category':'ምድብ','All observances':'ሁሉም በዓላት','Public holidays / closures':'ሕዝባዊ በዓላት / የዕረፍት ቀኖች','Fasting periods':'የጾም ወቅቶች','Orthodox feasts':'የኦርቶዶክስ በዓላት','Islamic observances':'የእስላም በዓላት','National observances':'ብሔራዊ መታሰቢያዎች','Upcoming only':'የሚመጡት ብቻ',
+    'Public holiday':'ሕዝባዊ በዓል','Fasting':'ጾም','Other observance':'ሌላ በዓል','Observance':'በዓል','Ethiopian date':'የኢትዮጵያ ቀን','Gregorian date':'የግሪጎሪያን ቀን','Status':'ሁኔታ',
+    'Ethiopian holidays and fasting periods for the selected Ethiopian year':'የተመረጠው የኢትዮጵያ ዓመት በዓላት እና የጾም ወቅቶች','No matching observances. Try another search or category.':'የሚዛመድ በዓል አልተገኘም። ፍለጋውን ወይም ምድቡን ይቀይሩ።',
+    'Red rows indicate national public-holiday closures. “Estimated” and “Tentative” Islamic dates require official confirmation.':'ቀይ መስመሮች ብሔራዊ የዕረፍት ቀኖችን ያሳያሉ። “ግምት” እና “ግምታዊ” የተላቸው የእስላም ቀኖች ኦፊሴላዊ ማረጋገጫ ይፈልጋሉ።',
+    'How dates are determined':'ቀኖች እንዴት ይወሰናሉ','Fixed and movable dates':'ቋሚ እና ሚንቀሳቀሱ ቀኖች','Fasting ranges and weekly fasts':'የጾም ክልሎች እና ሳምንታዊ ጾሞች','Islamic date confidence':'የእስላም ቀኖች ትክክለኛነት','Sources and review':'ምንጮች እና ግምገማ','Open the marked calendar':'ምልክት ያለው ቀን መቁጠሪያ ክፈት',
+    'Enkutatash, Meskel, Genna and Timket use fixed Ethiopian dates. Adwa, Labour Day and Patriots’ Victory Day use fixed Gregorian dates. Siklet, Fasika and related Orthodox observances move with the Bahire Hasab Paschal cycle.':'እንቁጣጣሽ፣ መስቀል፣ ገና እና ጥምቀት ቋሚ የኢትዮጵያ ቀኖችን ይጠቀማሉ። ዓድዋ፣ የሠራተኞች ቀን እና የአርበኞች ድል ቀን ቋሚ የግሪጎሪያን ቀኖች ናቸው። ስቅለት፣ ፋሲካ እና ተዛማጅ በዓላት በባሕረ ሃሳብ ይንቀሳቀሳሉ።',
+    'Fasting ranges include both the start and end dates shown. Wednesday and Friday fasts are recurring weekly observances, except during the fifty days of joy from Fasika through Pentecost and on other church-appointed exceptions. Follow your parish for personal observance.':'የጾም ክልሎች የመጀመሪያ እና የመጨረሻ ቀኖችን ያካትታሉ። የረቡዕ እና ዓርብ ጾሞች ሳምንታዊ ናቸው፤ ከፋሲካ እስከ ጰራቅሊጦስ በሃምሳ የደስታ ቀናት እና በሌሎች የቤተ ክርስቲያን ልዩ ሁኔታዎች ይቀራሉ። ለግል ጾም አብያተ ክርስቲያናትዎን ይከተሉ።',
+    'Islamic dates use reviewed overrides where available and otherwise a tabular Hijri estimate. Moon sighting and official announcements can shift a date by one day. Ramadan is always labelled as an estimate until officially confirmed.':'የእስላም ቀኖች የተገመገሙ ቀኖችን ይጠቀማሉ፤ ካልተገኘ ደግሞ የሂጅራ ስሌት ግምት ይጠቀማሉ። የጨረቃ ምልከታ እና ኦፊሴላዊ መግለጫዎች ቀኑን በአንድ ቀን ሊለውጡ ይችላሉ። ረመዳን እስኪረጋገጥ ድረስ ግምት ተብሎ ይመዘገባል።',
+    'Cross-checked against Timeanddate’s Ethiopia public-holiday calendar, Ethiopian Orthodox calendar guidance, Bahire Hasab calculation references, and published 2026/2027 feast schedules.':'ከTimeanddate የኢትዮጵያ ሕዝባዊ በዓላት፣ ከኢትዮጵያ ኦርቶዶክስ ቀን መቁጠሪያ፣ ከባሕረ ሃሳብ እና ከ2026/2027 የበዓላት መርሐ ግብሮች ጋር ተገምግሟል።',
+    'Last reviewed 24 November 2026. This planner supports planning and education; official government and religious announcements take precedence.':'የመጨረሻ ግምገማ 24 ህዳር 2026። ይህ መሣሪያ ለእቅድ እና ትምህርት ነው፤ ኦፊሴላዊ የመንግሥት እና ሃይማኖት መግለጫዎች ቅድሚያ ይሰጣሉ።',
+    'Show fasting periods and other observances':'የጾም ወቅቶችን እና ሌሎች በዓላት አሳይ','Observance':'በዓል','Select a day for its full Ethiopian and Gregorian dates.':'ሙሉ የኢትዮጵያ እና የግሪጎሪያን ቀኖችንና በዓላትን ለማየት ቀን ይምረጡ።'
+  });
+
   function pageName() { return location.pathname.split('/').pop() || 'index.html'; }
-  function setCookie(value) {
-    document.cookie = 'googtrans=' + value + ';path=/;max-age=31536000;SameSite=Lax';
-    document.cookie = 'googtrans=' + value + ';path=/;max-age=31536000;domain=' + location.hostname + ';SameSite=Lax';
-  }
-  function clearCookie() {
-    var end = ';path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT;SameSite=Lax';
-    document.cookie = 'googtrans=' + end;
-    document.cookie = 'googtrans=' + end + ';domain=' + location.hostname;
-  }
   function preferredLanguage() {
     var query = new URLSearchParams(location.search).get('lang');
     if (query === 'am' || query === 'en') return query;
     try { var saved = localStorage.getItem(STORAGE_KEY); if (saved === 'am' || saved === 'en') return saved; } catch (e) {}
-    var cookie = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
-    return cookie && /\/am$/.test(decodeURIComponent(cookie[1])) ? 'am' : 'en';
+    return 'en';
   }
   function textTranslation(value, lang) {
     var clean = value.trim();
@@ -251,11 +256,13 @@
     return null;
   }
   function translateLocalUI(lang) {
+    document.querySelectorAll('[data-en][data-am]').forEach(function(el){el.textContent=el.dataset[lang];});
+    document.querySelectorAll('[data-en-placeholder][data-am-placeholder]').forEach(function(el){el.placeholder=el.dataset[lang+'Placeholder'];});
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode: function (node) {
         var parent = node.parentElement;
         if (!parent || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-        if (parent.closest('script,style,textarea,input,select,.notranslate,#google_translate_element')) return NodeFilter.FILTER_REJECT;
+        if (parent.closest('script,style,textarea,input,.notranslate,[data-en][data-am]')) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
@@ -276,6 +283,8 @@
       if (!input.dataset.placeholderEn) input.dataset.placeholderEn = input.placeholder;
       input.placeholder = lang === 'am' ? 'መሣሪያ ይፈልጉ — ለምሳሌ “ቀን”፣ “አማርኛ”፣ “ታክስ”…' : input.dataset.placeholderEn;
     });
+    var holidaySearch=document.getElementById('hol-search');
+    if(holidaySearch){if(!holidaySearch.dataset.placeholderEn)holidaySearch.dataset.placeholderEn=holidaySearch.placeholder;holidaySearch.placeholder=lang==='am'?'ፋሲካ፣ ረመዳን፣ መስቀል… ይሞክሩ':holidaySearch.dataset.placeholderEn;}
     Object.keys(labels).forEach(function (key) {
       document.querySelectorAll('[aria-label="' + key + '"], [aria-label="' + labels[key] + '"]').forEach(function (el) {
         el.setAttribute('aria-label', labels[key]);
@@ -339,73 +348,16 @@
     if (lang === 'am') url.searchParams.set('lang', 'am'); else url.searchParams.delete('lang');
     history.replaceState(null, '', url.pathname + url.search + url.hash);
   }
-  function googleCombo() { return document.querySelector('select.goog-te-combo'); }
-  function driveGoogle(lang) {
-    var combo = googleCombo();
-    if (!combo) return false;
-    var value = lang === 'am' ? 'am' : '';
-    if (combo.value !== value) {
-      combo.value = value;
-      combo.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-    return true;
-  }
-  window.googleTranslateElementInit = function () {
-    if (!window.google || !google.translate || !google.translate.TranslateElement) return;
-    new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,am', autoDisplay:false }, 'google_translate_element');
-    if (current === 'am') {
-      var attempts = 0;
-      var timer = setInterval(function () {
-        if (driveGoogle('am') || ++attempts > 40) { clearInterval(timer); translating = false; }
-      }, 250);
-    }
-  };
-  function loadTranslator() {
-    if (document.querySelector('script[data-ethiosync-translator]')) return;
-    var helper = document.getElementById('google_translate_element');
-    if (!helper) {
-      helper = document.createElement('div');
-      helper.id = 'google_translate_element';
-      helper.className = 'notranslate';
-      helper.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(helper);
-    }
-    var script = document.createElement('script');
-    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    script.async = true;
-    script.dataset.ethiosyncTranslator = 'true';
-    script.onerror = function () {
-      translating = false;
-      var status = document.getElementById('language-status');
-      if (status) status.textContent = current === 'am' ? 'የዋና አሰሳው አማርኛ ተንታክቷል። ተጨማሪ ትርጉም በዚህ ጊዜ አይገኝም።' : 'The main navigation is in Amharic; full translation is temporarily unavailable.';
-    };
-    document.head.appendChild(script);
-  }
-  function setLanguage(lang, initial) {
+  function setLanguage(lang) {
     current = lang === 'am' ? 'am' : 'en';
     try { localStorage.setItem(STORAGE_KEY, current); } catch (e) {}
     syncControls(current);
     updateMetadata(current);
     translateLocalUI(current);
     updateLinks(current);
-    if (current === 'am') {
-      setCookie('/en/am');
-      loadTranslator();
-      if (!initial && driveGoogle('am')) translating = false;
-    } else {
-      driveGoogle('en');
-      clearCookie();
-    }
+    var status=document.getElementById('language-status');
+    if(status)status.textContent=current==='am'?'የገጹ ቋንቋ አማርኛ ሆኗል። ትርጉሙ ሙሉ በሙሉ በመሣሪያዎ ውስጥ ይሠራል።':'Language changed to English. Translation runs entirely on your device.';
     document.dispatchEvent(new CustomEvent('ethiosync:languagechange', { detail:{ language:current } }));
-  }
-  var observerTimer;
-  function observeDynamicContent(){
-    var observer = new MutationObserver(function(){
-      if(current!=='am') return;
-      clearTimeout(observerTimer);
-      observerTimer=setTimeout(function(){observer.disconnect();translateLocalUI('am');observer.observe(document.body,{childList:true,subtree:true,characterData:true});},80);
-    });
-    observer.observe(document.body,{childList:true,subtree:true,characterData:true});
   }
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.language-toggle').forEach(function (button) {
@@ -415,7 +367,6 @@
     });
     var brand = document.querySelector('.brand');
     if (brand) brand.classList.add('notranslate');
-    setLanguage(preferredLanguage(), true);
-    observeDynamicContent();
+    setLanguage(preferredLanguage());
   });
 })();
