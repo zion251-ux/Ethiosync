@@ -1,11 +1,25 @@
-ETHIOSYNC WEBSITE UPDATE
+ETHIOSYNC WEBSITE
 
-Changes:
-- Rebranded visible website text, titles, descriptions, navigation labels, favicon text/metadata, and structured data from Kronos to EthioSync.
-- Preserved the existing kronos.alc.onl canonical host because no replacement domain was supplied. Update canonical URLs and sitemap.xml if the domain changes.
-- Reworked the shared header layout so the brand stays left-aligned and the language/theme/menu controls stay right-aligned on desktop and mobile.
-- Added an English / Amharic language selector to all pages. Amharic translation is provided by Google Website Translator and therefore requires an internet connection and Google's translation service to be available.
-- Existing site pages, tools, calculations, styles and scripts were retained.
+Static English/Amharic website for Ethiopian calendar, language, finance, reference, creator resources, articles, educational games, and the standalone Android app download page.
 
-Deploy:
-Upload the contents of this ZIP to the website document root, keeping the folders (css/, js/, images/) in their existing structure.
+Android app:
+- app.html provides Play Store search, GitHub, and direct APK options.
+- downloads/EthioSync.apk is the signed EthioSync 1.0.1 package developed by Nxhom.
+- Keep downloads/EthioSync.apk and images/ethiosync-android.png together when deploying.
+
+Translation:
+- Uses only the local dictionary and declarative data-en/data-am attributes in js/language.js and the HTML pages.
+- No Google Translate, remote translation script, or automatic retranslation observer.
+
+Deployment:
+- GitHub Pages serves the repository root as plain static files.
+- CNAME must contain exactly: ethiosync.cyou
+- Keep .nojekyll so GitHub Pages serves all static assets without Jekyll processing.
+- Preserve robots.txt, sitemap.xml, css/, js/, images/, and downloads/ when deploying.
+
+Local preview:
+python3 -m http.server 8765
+
+Safety checks before pushing:
+test -f CNAME && test "$(cat CNAME)" = "ethiosync.cyou"
+git ls-files --error-unmatch CNAME .nojekyll

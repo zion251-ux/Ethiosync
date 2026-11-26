@@ -7,7 +7,7 @@
   var ui = {
     'Home':'ዋና ገጽ','All Tools':'ሁሉም መሣሪያዎች','Calendar Tools':'የቀን መቁጠሪያ መሣሪያዎች',
     'Amharic & Language':'አማርኛ እና ቋንቋ','Finance & Work':'ፋይናንስ እና ሥራ','Reference':'ማጣቀሻ',
-    'Resources':'ግብዓቶች','Blog':'ብሎግ','Games':'ጨዋታዎች','About':'ስለ እኛ','About EthioSync':'ስለ EthioSync',
+    'Resources':'ግብዓቶች','Blog':'ብሎግ','Games':'ጨዋታዎች','Get the App':'መተግበሪያውን ያግኙ','About':'ስለ እኛ','About EthioSync':'ስለ EthioSync',
     'Quick Links':'ፈጣን አገናኞች','Top Tools':'ዋና መሣሪያዎች','Learn more':'ተጨማሪ ይመልከቱ',
     'Privacy':'የግላዊነት ፖሊሲ','Terms':'የአጠቃቀም ውሎች','Calendar':'ቀን መቁጠሪያ','Language':'ቋንቋ',
     'Finance':'ፋይናንስ','Free Tools':'ነጻ መሣሪያዎች','Categories':'ምድቦች','Private':'የግል መረጃዎ ይጠበቃል',
@@ -221,6 +221,7 @@
     'resources.html': ['ግብዓቶች | EthioSync','ጠቃሚ የኢትዮጵያ የቀን መቁጠሪያ፣ ቋንቋ እና ባሕል ግብዓቶች።'],
     'blog.html': ['ብሎግ | EthioSync','ስለ ኢትዮጵያ ቀን መቁጠሪያ፣ አማርኛ እና ተግባራዊ መሣሪያዎች መመሪያዎች።'],
     'games.html': ['ጨዋታዎች | EthioSync','ቀላል እና አዝናኝ የድረ-ገጽ ጨዋታዎች።'],
+    'app.html': ['EthioSyncን ለአንድሮይድ ያውርዱ — APK፣ GitHub እና Play Store','ነጻውን የEthioSync አንድሮይድ መተግበሪያ በቀጥታ APK፣ በGoogle Play ወይም በGitHub ያግኙ። በNxhom የተዘጋጀ።'],
     'about.html': ['ስለ EthioSync | EthioSync','ስለ EthioSync ነጻ የኢትዮጵያ መሣሪያዎች እና የግላዊነት አቀራረብ ይወቁ።'],
     'privacy.html': ['የግላዊነት ፖሊሲ | EthioSync','EthioSync መረጃዎን እንዴት እንደሚጠብቅ ይመልከቱ።'],
     'terms.html': ['የአጠቃቀም ውሎች | EthioSync','የEthioSync ድረ-ገጽ እና መሣሪያዎች የአጠቃቀም ውሎች።']
@@ -274,10 +275,12 @@
     });
     var labels = lang === 'am' ? {
       'Website language':'የድረ-ገጹ ቋንቋ','Select language':'ቋንቋ ይምረጡ','Primary':'ዋና አሰሳ',
-      'Toggle dark mode':'ጨለማ ገጽታ ይቀይሩ','Open menu':'ማውጫ ክፈት','Search tools':'መሣሪያዎችን ፈልግ'
+      'Toggle dark mode':'ጨለማ ገጽታ ይቀይሩ','Open menu':'ማውጫ ክፈት','Search tools':'መሣሪያዎችን ፈልግ',
+      'EthioSync on Google Play':'EthioSyncን በGoogle Play ያግኙ','EthioSync on GitHub':'EthioSyncን በGitHub ያግኙ','Download EthioSync APK':'የEthioSync APK ያውርዱ','Download EthioSync app':'የEthioSync መተግበሪያ ያውርዱ'
     } : {
       'Website language':'Website language','Select language':'Select language','Primary':'Primary',
-      'Toggle dark mode':'Toggle dark mode','Open menu':'Open menu','Search tools':'Search tools'
+      'Toggle dark mode':'Toggle dark mode','Open menu':'Open menu','Search tools':'Search tools',
+      'EthioSync on Google Play':'EthioSync on Google Play','EthioSync on GitHub':'EthioSync on GitHub','Download EthioSync APK':'Download EthioSync APK','Download EthioSync app':'Download EthioSync app'
     };
     document.querySelectorAll('[data-tool-search]').forEach(function(input){
       if (!input.dataset.placeholderEn) input.dataset.placeholderEn = input.placeholder;
@@ -336,7 +339,7 @@
   function updateLinks(lang) {
     document.querySelectorAll('a[href]').forEach(function (a) {
       var href = a.getAttribute('href');
-      if (!href || /^(https?:|mailto:|tel:|javascript:)/i.test(href)) return;
+      if (!href || /^(https?:|mailto:|tel:|javascript:)/i.test(href) || a.hasAttribute('download')) return;
       try {
         var url = new URL(a.href);
         if (url.origin !== location.origin) return;

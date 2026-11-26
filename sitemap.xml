@@ -160,4 +160,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ethiosync.cyou/time-in-ethiopia.html"/>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://ethiosync.cyou/app.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ethiosync.cyou/app.html"/>
+    <xhtml:link rel="alternate" hreflang="am" href="https://ethiosync.cyou/app.html?lang=am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ethiosync.cyou/app.html"/>
+    <priority>0.7</priority>
+  </url>
 </urlset>
